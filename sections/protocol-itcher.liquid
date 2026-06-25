@@ -4,38 +4,34 @@
   <!-- Sale Banner -->
   <div class="sale-banner">
     <div class="sale-banner__inner">
-      <span class="sale-banner__title">{{ section.settings.sale_text }}</span>
+      <span class="sale-banner__title">Spring Sale</span>
       <span class="sale-banner__divider"></span>
-      <span class="sale-banner__discount">Save up to <span class="sale-banner__percent">{{ section.settings.sale_discount }}</span></span>
+      <span class="sale-banner__discount">Save up to <span class="sale-banner__percent">70%</span></span>
     </div>
   </div>
 
   <!-- Header -->
   <header class="protocol-header">
-    <span class="protocol-header__brand">{{ section.settings.brand_name }}</span>
+    <span class="protocol-header__brand">Lumvelle</span>
   </header>
 
   <div class="protocol-container">
     <!-- Hero Section -->
     <section class="protocol-hero">
       <h1 class="protocol-hero__title">
-        Your <span class="protocol-hero__type">&ldquo;{{ section.settings.parasite_type }}&rdquo;</span> Cleanse Protocol Is Ready
+        Your <span class="protocol-hero__type">&ldquo;Itcher&rdquo;</span> Cleanse Protocol Is Ready
       </h1>
 
       <div class="protocol-hero__intro">
-        <p>{{ section.settings.intro_paragraph_1 }}</p>
-        <p>{{ section.settings.intro_paragraph_2 }}</p>
-        <p>{{ section.settings.intro_paragraph_3 }}</p>
+        <p>Based on your <strong class="text-foreground">symptoms</strong>, you fit the exact profile this formula was built for. That&rsquo;s why we&rsquo;re able to extend this offer to you.</p>
+        <p>It&rsquo;s our pleasure to send you <strong class="text-foreground">1 or 2 bottles completely free</strong>. This is the deepest discount Lumvelle is ever sold at and the only place to claim it. Not on Amazon. Not on our main site. Yours for the next 15 minutes.</p>
+        <p>Pick the <strong class="text-foreground">3 bottle</strong> to feel like yourself again. Pick the <strong class="text-foreground">5 bottle</strong> to stay that way.</p>
       </div>
 
       <!-- Hero Image -->
       <div class="protocol-hero__image">
-        {% if section.settings.hero_image %}
-          <img src="{{ section.settings.hero_image | image_url: width: 1024 }}" alt="Lumvelle Wormwood Drops bundle" loading="eager" width="1024" height="1024">
-        {% else %}
           <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="Lumvelle Wormwood Drops bundle" loading="eager" width="1024" height="1024">
-        {% endif %}
-      </div>
+        </div>
 
       <!-- Badges -->
       <div class="protocol-badges">
@@ -67,64 +63,52 @@
 
       <!-- Pricing Options -->
       <div class="protocol-pricing">
-        <a href="{{ section.settings.option1_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
           <div class="protocol-pricing__option-inner">
-            {% if section.settings.bottle_1_image %}
-              <img src="{{ section.settings.bottle_1_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
-            {% else %}
-              <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            {% endif %}
+            <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
             <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">{{ section.settings.option1_title }}</div>
-              <div class="protocol-pricing__subtitle">{{ section.settings.option1_subtitle }}</div>
+              <div class="protocol-pricing__title">Buy One</div>
+              <div class="protocol-pricing__subtitle">You save 71%</div>
             </div>
             <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">{{ section.settings.option1_price }}</div>
-              <div class="protocol-pricing__compare">{{ section.settings.option1_compare_price }}</div>
+              <div class="protocol-pricing__price">$19.95</div>
+              <div class="protocol-pricing__compare">$69.99</div>
             </div>
           </div>
         </a>
 
-        <a href="{{ section.settings.option2_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--featured">
+        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--featured">
           <div class="protocol-pricing__option-inner">
-            {% if section.settings.bottle_3_image %}
-              <img src="{{ section.settings.bottle_3_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
-            {% else %}
-              <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            {% endif %}
+            <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
             <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">{{ section.settings.option2_title }}</div>
-              <div class="protocol-pricing__subtitle">{{ section.settings.option2_subtitle }}</div>
+              <div class="protocol-pricing__title">Buy 2 Get 1 FREE</div>
+              <div class="protocol-pricing__subtitle">You save 81%</div>
             </div>
             <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">{{ section.settings.option2_price }}</div>
-              <div class="protocol-pricing__compare">{{ section.settings.option2_compare_price }}</div>
+              <div class="protocol-pricing__price">$39.95</div>
+              <div class="protocol-pricing__compare">$209.97</div>
             </div>
           </div>
         </a>
 
-        <a href="{{ section.settings.option3_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
           <div class="protocol-pricing__option-inner">
-            {% if section.settings.bottle_5_image %}
-              <img src="{{ section.settings.bottle_5_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
-            {% else %}
-              <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            {% endif %}
+            <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
             <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">{{ section.settings.option3_title }}</div>
-              <div class="protocol-pricing__subtitle">{{ section.settings.option3_subtitle }}</div>
+              <div class="protocol-pricing__title">Buy 3 Get 2 FREE</div>
+              <div class="protocol-pricing__subtitle">You save 83%</div>
             </div>
             <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">{{ section.settings.option3_price }}</div>
-              <div class="protocol-pricing__compare">{{ section.settings.option3_compare_price }}</div>
+              <div class="protocol-pricing__price">$59.95</div>
+              <div class="protocol-pricing__compare">$349.95</div>
             </div>
           </div>
         </a>
       </div>
 
       <!-- CTA Button -->
-      <a href="{{ section.settings.cta_button_url }}" class="protocol-cta">
-        <span>{{ section.settings.cta_button_text }}</span>
+      <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-cta">
+        <span>Check Availability</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
       </a>
 
@@ -152,7 +136,7 @@
               <span class="protocol-delivery__priority">Priority</span>
               <span class="protocol-delivery__express">Express delivery</span>
             </div>
-            <p class="protocol-delivery__text">Arrives in <strong>{{ section.settings.delivery_city }}</strong> by <strong>{{ section.settings.delivery_date }}</strong></p>
+            <p class="protocol-delivery__text">Arrives in <strong>your area</strong> by <strong>Sun, Jun 28</strong></p>
             <p class="protocol-delivery__subtext">Routed locally for faster accessibility</p>
           </div>
         </div>
@@ -163,12 +147,12 @@
         <div class="protocol-stock__inner">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-stock__icon"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
           <div class="protocol-stock__content">
-            <p>Only <strong>{{ section.settings.stock_bottles_left }} bottles left</strong> in batch <strong>{{ section.settings.stock_batch_number }}</strong></p>
-            <p class="protocol-stock__warning">Low availability &mdash; {{ section.settings.stock_percentage }}% of this batch already claimed</p>
+            <p>Only <strong>15 bottles left</strong> in batch <strong>#4231</strong></p>
+            <p class="protocol-stock__warning">Low availability &mdash; 98% of this batch already claimed</p>
           </div>
         </div>
         <div class="protocol-stock__bar">
-          <div class="protocol-stock__bar-fill" style="width: {{ section.settings.stock_percentage }}%;"></div>
+          <div class="protocol-stock__bar-fill" style="width: 98%;"></div>
         </div>
       </div>
     </section>
@@ -178,23 +162,50 @@
       <div class="protocol-section-badge">
         <span>What you&rsquo;ll feel</span>
       </div>
-      <h2 class="protocol-timeline__heading">{{ section.settings.timeline_heading }}</h2>
+      <h2 class="protocol-timeline__heading">In 21 days, your body becomes unrecognizable to you.</h2>
 
       <ol class="protocol-timeline__list">
-        {% for block in section.blocks %}
-          {% if block.type == "timeline_item" %}
-            <li class="protocol-timeline__item" {{ block.shopify_attributes }}>
+            <li class="protocol-timeline__item">
               <div class="protocol-timeline__item-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
               </div>
               <div class="protocol-timeline__item-content">
-                <span class="protocol-timeline__item-days">{{ block.settings.days }}</span>
-                <span class="protocol-timeline__item-title">{{ block.settings.title }}</span>
-                <p class="protocol-timeline__item-desc">{{ block.settings.description }}</p>
+                <span class="protocol-timeline__item-days">Days 1–3</span>
+                <span class="protocol-timeline__item-title">They feel it first</span>
+                <p class="protocol-timeline__item-desc">The parasites sense the shift before you do. Wormwood floods your gut and they start to scramble. You might feel mild bloating or fatigue — that’s the die-off beginning.</p>
               </div>
             </li>
-          {% endif %}
-        {% endfor %}
+            <li class="protocol-timeline__item">
+              <div class="protocol-timeline__item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="protocol-timeline__item-content">
+                <span class="protocol-timeline__item-days">Days 4–7</span>
+                <span class="protocol-timeline__item-title">The flush begins</span>
+                <p class="protocol-timeline__item-desc">Your body starts expelling what’s been hiding. Digestion moves faster. Bloating starts to ease. You may notice changes in your stool — that’s the protocol working.</p>
+              </div>
+            </li>
+            <li class="protocol-timeline__item">
+              <div class="protocol-timeline__item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="protocol-timeline__item-content">
+                <span class="protocol-timeline__item-days">Days 8–14</span>
+                <span class="protocol-timeline__item-title">Energy returns</span>
+                <p class="protocol-timeline__item-desc">Without parasites draining your nutrients, your body starts absorbing food properly again. Mental fog lifts. You wake up feeling lighter, sharper, more like yourself.</p>
+              </div>
+            </li>
+            <li class="protocol-timeline__item">
+              <div class="protocol-timeline__item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="protocol-timeline__item-content">
+                <span class="protocol-timeline__item-days">Days 15–21</span>
+                <span class="protocol-timeline__item-title">The reset completes</span>
+                <p class="protocol-timeline__item-desc">Your gut lining begins to heal. Cravings fade. Inflammation drops. This is where most people say they feel “like a completely different person.”</p>
+              </div>
+            </li>
+
       </ol>
     </section>
 
@@ -203,28 +214,80 @@
       <div class="protocol-section-badge protocol-section-badge--green">
         <span>What&rsquo;s inside</span>
       </div>
-      <h2 class="protocol-ingredients__heading">{{ section.settings.ingredients_heading }}</h2>
-      <p class="protocol-ingredients__intro">{{ section.settings.ingredients_intro }}</p>
+      <h2 class="protocol-ingredients__heading">Seven herbs. One bottle. Nothing you can&rsquo;t pronounce.</h2>
+      <p class="protocol-ingredients__intro">This is the full formula. No proprietary blend hiding behind a label. No filler stretching the bottle out. Seven wild-harvested herbs, each one doing exactly one job.</p>
 
       <ul class="protocol-ingredients__list">
-        {% for block in section.blocks %}
-          {% if block.type == "ingredient" %}
-            <li class="protocol-ingredients__item" {{ block.shopify_attributes }}>
+            <li class="protocol-ingredients__item">
               <div class="protocol-ingredients__item-image">
-                {% if block.settings.image %}
-                  <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.name }}" loading="lazy">
-                {% else %}
-                  <img src="{{ block.settings.name | handleize | prepend: 'herb-' | append: '.jpg' | asset_url }}" alt="{{ block.settings.name }}" loading="lazy">
-                {% endif %}
+                <img src="{{ "herb-wild-mediterranean-wormwood.jpg" | asset_url }}" alt="Wild Mediterranean Wormwood" loading="lazy">
               </div>
               <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">{{ block.settings.name }}</span>
-                <span class="protocol-ingredients__item-subtitle">{{ block.settings.subtitle }}</span>
-                <p class="protocol-ingredients__item-desc">{{ block.settings.description }}</p>
+                <span class="protocol-ingredients__item-name">Wild Mediterranean Wormwood</span>
+                <span class="protocol-ingredients__item-subtitle">The one that does the killing</span>
+                <p class="protocol-ingredients__item-desc">Used for centuries to purge intestinal invaders. Artemisinin targets parasites at every life stage — eggs, larvae, adults. This is the backbone of the formula.</p>
               </div>
             </li>
-          {% endif %}
-        {% endfor %}
+            <li class="protocol-ingredients__item">
+              <div class="protocol-ingredients__item-image">
+                <img src="{{ "herb-black-walnut-hull.jpg" | asset_url }}" alt="Black Walnut Hull" loading="lazy">
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">Black Walnut Hull</span>
+                <span class="protocol-ingredients__item-subtitle">Cuts off their oxygen</span>
+                <p class="protocol-ingredients__item-desc">The green hull contains juglone, a compound that suffocates parasites by disrupting their cellular respiration. Works especially well on intestinal worms.</p>
+              </div>
+            </li>
+            <li class="protocol-ingredients__item">
+              <div class="protocol-ingredients__item-image">
+                <img src="{{ "herb-organic-clove-bud.jpg" | asset_url }}" alt="Organic Clove Bud" loading="lazy">
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">Organic Clove Bud</span>
+                <span class="protocol-ingredients__item-subtitle">Destroys the eggs</span>
+                <p class="protocol-ingredients__item-desc">Most anti-parasitic herbs miss the eggs. Clove doesn’t. Its eugenol compound dissolves the protective casing around parasite eggs so they can’t hatch and reinfect you.</p>
+              </div>
+            </li>
+            <li class="protocol-ingredients__item">
+              <div class="protocol-ingredients__item-image">
+                <img src="{{ "herb-garlic-bulb-extract.jpg" | asset_url }}" alt="Garlic Bulb Extract" loading="lazy">
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">Garlic Bulb Extract</span>
+                <span class="protocol-ingredients__item-subtitle">Nature’s broad-spectrum antibiotic</span>
+                <p class="protocol-ingredients__item-desc">Allicin in garlic is lethal to over 60 types of fungi and 20 types of bacteria. It also paralyzes parasites, making them easier to flush.</p>
+              </div>
+            </li>
+            <li class="protocol-ingredients__item">
+              <div class="protocol-ingredients__item-image">
+                <img src="{{ "herb-oregano-leaf-oil.jpg" | asset_url }}" alt="Oregano Leaf Oil" loading="lazy">
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">Oregano Leaf Oil</span>
+                <span class="protocol-ingredients__item-subtitle">Breaks down biofilms</span>
+                <p class="protocol-ingredients__item-desc">Parasites hide behind biofilm — a slimy shield that protects them from your immune system. Oregano oil’s carvacrol dissolves that shield.</p>
+              </div>
+            </li>
+            <li class="protocol-ingredients__item">
+              <div class="protocol-ingredients__item-image">
+                <img src="{{ "herb-pumpkin-seed.jpg" | asset_url }}" alt="Pumpkin Seed" loading="lazy">
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">Pumpkin Seed</span>
+                <span class="protocol-ingredients__item-subtitle">The gentle paralyzer</span>
+                <p class="protocol-ingredients__item-desc">Contains cucurbitin, an amino acid that paralyzes tapeworms and roundworms without harsh side effects. Used in traditional medicine for centuries.</p>
+              </div>
+            </li>
+            <li class="protocol-ingredients__item">
+              <div class="protocol-ingredients__item-image">
+                <img src="{{ "herb-pau-darco-bark.jpg" | asset_url }}" alt="Pau d’Arco Bark" loading="lazy">
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">Pau d’Arco Bark</span>
+                <span class="protocol-ingredients__item-subtitle">Cleans what’s left behind</span>
+                <p class="protocol-ingredients__item-desc">After the parasites die, their toxins remain. Pau d’Arco supports your liver and lymphatic system in clearing the debris so you don’t feel worse before you feel better.</p>
+              </div>
+            </li>
       </ul>
     </section>
 
@@ -235,25 +298,33 @@
       </div>
 
       <div class="protocol-who__image-wrapper">
-        {% if section.settings.who_image %}
-          <img src="{{ section.settings.who_image | image_url: width: 600 }}" alt="" class="protocol-who__image" loading="lazy">
-        {% else %}
-          <img src="{{ "plush-over40.jpg" | asset_url }}" alt="" class="protocol-who__image" loading="lazy">
-        {% endif %}
+        <img src="{{ "plush-over40.jpg" | asset_url }}" alt="" class="protocol-who__image" loading="lazy">
       </div>
 
-      <h2 class="protocol-who__heading">{{ section.settings.who_heading }}</h2>
-      <p class="protocol-who__description">{{ section.settings.who_description }}</p>
+      <h2 class="protocol-who__heading">This protocol is built for people who&hellip;</h2>
+      <p class="protocol-who__description">Have tried everything and still feel bloated, sluggish, or &ldquo;off.&rdquo; This isn&rsquo;t another supplement. It&rsquo;s a targeted cleanse designed around your specific symptom profile.</p>
 
       <ul class="protocol-who__checklist">
-        {% for block in section.blocks %}
-          {% if block.type == "checklist_item" %}
-            <li class="protocol-who__checklist-item" {{ block.shopify_attributes }}>
+            <li class="protocol-who__checklist-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
-              <span>{{ block.settings.text }}</span>
+              <span>You’ve tried probiotics, fiber, and cleanses with no lasting relief</span>
             </li>
-          {% endif %}
-        {% endfor %}
+            <li class="protocol-who__checklist-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+              <span>You wake up bloated even when you ate clean the day before</span>
+            </li>
+            <li class="protocol-who__checklist-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+              <span>You’re tired of being told “it’s just stress” or “it’s your age”</span>
+            </li>
+            <li class="protocol-who__checklist-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+              <span>You want a natural, science-backed approach — not another prescription</span>
+            </li>
+            <li class="protocol-who__checklist-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+              <span>You’re ready to feel like yourself again within 21 days</span>
+            </li>
       </ul>
     </section>
 
@@ -264,80 +335,100 @@
       </div>
 
       <div class="protocol-faq__list">
-        {% for block in section.blocks %}
-          {% if block.type == "faq_item" %}
-            <details class="protocol-faq__item" {{ block.shopify_attributes }}>
+          <details class="protocol-faq__item">
               <summary class="protocol-faq__question">
-                <span>{{ block.settings.question }}</span>
+                <span>How fast will I feel a difference?</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
               </summary>
               <div class="protocol-faq__answer">
-                <p>{{ block.settings.answer }}</p>
+                <p>Most people notice reduced bloating within the first 3–5 days. Energy improvements typically come in week two. By day 21, the full protocol has run its course.</p>
               </div>
             </details>
-          {% endif %}
-        {% endfor %}
+          <details class="protocol-faq__item">
+              <summary class="protocol-faq__question">
+                <span>How do I take it?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
+              </summary>
+              <div class="protocol-faq__answer">
+                <p>Place one full dropper under your tongue, hold for 30 seconds, then swallow. Take once in the morning and once before bed. Each bottle lasts 30 days.</p>
+              </div>
+            </details>
+          <details class="protocol-faq__item">
+              <summary class="protocol-faq__question">
+                <span>Can I pause or cancel?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
+              </summary>
+              <div class="protocol-faq__answer">
+                <p>Yes. There’s no commitment. You can pause, skip, or cancel your subscription at any time from your account dashboard or by contacting support.</p>
+              </div>
+            </details>
+          <details class="protocol-faq__item">
+              <summary class="protocol-faq__question">
+                <span>Is there a guarantee?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
+              </summary>
+              <div class="protocol-faq__answer">
+                <p>Absolutely. Every order is backed by our 90-day risk-free guarantee. If you don’t feel a noticeable difference, we’ll refund you in full — no questions asked.</p>
+              </div>
+            </details>
+          <details class="protocol-faq__item">
+              <summary class="protocol-faq__question">
+                <span>Will my doctor approve?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
+              </summary>
+              <div class="protocol-faq__answer">
+                <p>Our formula uses only natural, well-studied herbs with centuries of traditional use. That said, we always recommend sharing any new supplement with your healthcare provider.</p>
+              </div>
+            </details>
       </div>
     </section>
 
     <!-- Second CTA Section (repeat pricing) -->
     <section class="protocol-hero protocol-hero--repeat">
       <div class="protocol-pricing">
-        <a href="{{ section.settings.option1_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
           <div class="protocol-pricing__option-inner">
-            {% if section.settings.bottle_1_image %}
-              <img src="{{ section.settings.bottle_1_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
-            {% else %}
-              <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            {% endif %}
+            <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
             <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">{{ section.settings.option1_title }}</div>
-              <div class="protocol-pricing__subtitle">{{ section.settings.option1_subtitle }}</div>
+              <div class="protocol-pricing__title">Buy One</div>
+              <div class="protocol-pricing__subtitle">You save 71%</div>
             </div>
             <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">{{ section.settings.option1_price }}</div>
-              <div class="protocol-pricing__compare">{{ section.settings.option1_compare_price }}</div>
+              <div class="protocol-pricing__price">$19.95</div>
+              <div class="protocol-pricing__compare">$69.99</div>
             </div>
           </div>
         </a>
-        <a href="{{ section.settings.option2_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--featured">
+        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--featured">
           <div class="protocol-pricing__option-inner">
-            {% if section.settings.bottle_3_image %}
-              <img src="{{ section.settings.bottle_3_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
-            {% else %}
-              <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            {% endif %}
+            <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
             <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">{{ section.settings.option2_title }}</div>
-              <div class="protocol-pricing__subtitle">{{ section.settings.option2_subtitle }}</div>
+              <div class="protocol-pricing__title">Buy 2 Get 1 FREE</div>
+              <div class="protocol-pricing__subtitle">You save 81%</div>
             </div>
             <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">{{ section.settings.option2_price }}</div>
-              <div class="protocol-pricing__compare">{{ section.settings.option2_compare_price }}</div>
+              <div class="protocol-pricing__price">$39.95</div>
+              <div class="protocol-pricing__compare">$209.97</div>
             </div>
           </div>
         </a>
-        <a href="{{ section.settings.option3_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
           <div class="protocol-pricing__option-inner">
-            {% if section.settings.bottle_5_image %}
-              <img src="{{ section.settings.bottle_5_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
-            {% else %}
-              <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            {% endif %}
+            <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
             <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">{{ section.settings.option3_title }}</div>
-              <div class="protocol-pricing__subtitle">{{ section.settings.option3_subtitle }}</div>
+              <div class="protocol-pricing__title">Buy 3 Get 2 FREE</div>
+              <div class="protocol-pricing__subtitle">You save 83%</div>
             </div>
             <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">{{ section.settings.option3_price }}</div>
-              <div class="protocol-pricing__compare">{{ section.settings.option3_compare_price }}</div>
+              <div class="protocol-pricing__price">$59.95</div>
+              <div class="protocol-pricing__compare">$349.95</div>
             </div>
           </div>
         </a>
       </div>
 
-      <a href="{{ section.settings.cta_button_url }}" class="protocol-cta">
-        <span>{{ section.settings.cta_button_text }}</span>
+      <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-cta">
+        <span>Check Availability</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
       </a>
     </section>
@@ -376,9 +467,9 @@
 
     <!-- Footer -->
     <footer class="protocol-footer">
-      <div class="protocol-footer__brand">{{ section.settings.brand_name }}</div>
-      <p class="protocol-footer__copyright">{{ section.settings.brand_name }} 2026 &copy; All rights reserved</p>
-      <p class="protocol-footer__disclaimer"><strong>Disclaimer!</strong> {{ section.settings.disclaimer_text }}</p>
+      <div class="protocol-footer__brand">Lumvelle</div>
+      <p class="protocol-footer__copyright">Lumvelle 2026 &copy; All rights reserved</p>
+      <p class="protocol-footer__disclaimer"><strong>Disclaimer!</strong> The statements on this site have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease and do not replace medical advice. Individual results may differ from person to person. Exercise and a healthy diet are necessary to achieve and maintain weight loss.</p>
       <a href="/" class="protocol-footer__retake">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
         Retake quiz
@@ -391,367 +482,32 @@
   </div>
 </main>
 
+
 {% schema %}
 {
-  "name": "Protocol - \u201cItcher\u201d",
+  "name": "Protocol \u2013 \u201cItcher\u201d",
   "settings": [
     {
       "type": "text",
-      "id": "sale_text",
-      "label": "Sale Banner Text",
-      "default": "Spring Sale"
+      "id": "product_handle",
+      "label": "Product Handle",
+      "default": "lumvelle-wild-harvested-wormwood-herbal-drops"
     },
     {
       "type": "text",
-      "id": "sale_discount",
-      "label": "Sale Discount Percentage",
-      "default": "70%"
-    },
-    {
-      "type": "text",
-      "id": "brand_name",
-      "label": "Brand Name",
-      "default": "Lumvelle"
-    },
-    {
-      "type": "text",
-      "id": "parasite_type",
-      "label": "Parasite Type Name",
-      "default": "\u201cItcher\u201d"
-    },
-    {
-      "type": "textarea",
-      "id": "intro_paragraph_1",
-      "label": "Intro Paragraph 1",
-      "default": "Based on your <strong class=\"text-foreground\">symptoms</strong>, you fit the exact profile this formula was built for. That\u2019s why we\u2019re able to extend this offer to you."
-    },
-    {
-      "type": "textarea",
-      "id": "intro_paragraph_2",
-      "label": "Intro Paragraph 2",
-      "default": "It\u2019s our pleasure to send you <strong class=\"text-foreground\">1 or 2 bottles completely free</strong>. This is the deepest discount Lumvelle is ever sold at and the only place to claim it. Not on Amazon. Not on our main site. Yours for the next 15 minutes."
-    },
-    {
-      "type": "textarea",
-      "id": "intro_paragraph_3",
-      "label": "Intro Paragraph 3",
-      "default": "Pick the <strong class=\"text-foreground\">3 bottle</strong> to feel like yourself again. Pick the <strong class=\"text-foreground\">5 bottle</strong> to stay that way."
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero Product Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "bottle_1_image",
-      "label": "Single Bottle Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "bottle_3_image",
-      "label": "3 Bottles Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "bottle_5_image",
-      "label": "5 Bottles Image"
-    },
-    {
-      "type": "text",
-      "id": "option1_title",
-      "label": "Option 1 Title",
-      "default": "Buy One"
-    },
-    {
-      "type": "text",
-      "id": "option1_subtitle",
-      "label": "Option 1 Subtitle",
-      "default": "You save 71%"
-    },
-    {
-      "type": "text",
-      "id": "option1_price",
-      "label": "Option 1 Price",
-      "default": "$19.95"
-    },
-    {
-      "type": "text",
-      "id": "option1_compare_price",
-      "label": "Option 1 Compare Price",
-      "default": "$69.99"
-    },
-    {
-      "type": "url",
-      "id": "option1_url",
-      "label": "Option 1 Link URL"
-    },
-    {
-      "type": "text",
-      "id": "option2_title",
-      "label": "Option 2 Title",
-      "default": "Buy 2 Get 1 FREE"
-    },
-    {
-      "type": "text",
-      "id": "option2_subtitle",
-      "label": "Option 2 Subtitle",
-      "default": "You save 81%"
-    },
-    {
-      "type": "text",
-      "id": "option2_price",
-      "label": "Option 2 Price",
-      "default": "$39.95"
-    },
-    {
-      "type": "text",
-      "id": "option2_compare_price",
-      "label": "Option 2 Compare Price",
-      "default": "$209.97"
-    },
-    {
-      "type": "url",
-      "id": "option2_url",
-      "label": "Option 2 Link URL"
-    },
-    {
-      "type": "text",
-      "id": "option3_title",
-      "label": "Option 3 Title",
-      "default": "Buy 3 Get 2 FREE"
-    },
-    {
-      "type": "text",
-      "id": "option3_subtitle",
-      "label": "Option 3 Subtitle",
-      "default": "You save 83%"
-    },
-    {
-      "type": "text",
-      "id": "option3_price",
-      "label": "Option 3 Price",
-      "default": "$59.95"
-    },
-    {
-      "type": "text",
-      "id": "option3_compare_price",
-      "label": "Option 3 Compare Price",
-      "default": "$349.95"
-    },
-    {
-      "type": "url",
-      "id": "option3_url",
-      "label": "Option 3 Link URL"
-    },
-    {
-      "type": "text",
-      "id": "cta_button_text",
-      "label": "CTA Button Text",
-      "default": "Check Availability"
-    },
-    {
-      "type": "url",
-      "id": "cta_button_url",
-      "label": "CTA Button URL"
-    },
-    {
-      "type": "text",
-      "id": "delivery_city",
-      "label": "Delivery City (dynamic)",
-      "default": "your area"
-    },
-    {
-      "type": "text",
-      "id": "delivery_date",
-      "label": "Delivery Date",
-      "default": "Sun, Jun 28"
-    },
-    {
-      "type": "text",
-      "id": "stock_bottles_left",
-      "label": "Bottles Left Count",
-      "default": "15"
-    },
-    {
-      "type": "text",
-      "id": "stock_batch_number",
-      "label": "Batch Number",
-      "default": "#4231"
-    },
-    {
-      "type": "text",
-      "id": "stock_percentage",
-      "label": "Stock Claimed Percentage",
-      "default": "98"
-    },
-    {
-      "type": "text",
-      "id": "timeline_heading",
-      "label": "Timeline Section Heading",
-      "default": "In 21 days, your body becomes unrecognizable to you."
-    },
-    {
-      "type": "text",
-      "id": "ingredients_heading",
-      "label": "Ingredients Section Heading",
-      "default": "Seven herbs. One bottle. Nothing you can't pronounce."
-    },
-    {
-      "type": "textarea",
-      "id": "ingredients_intro",
-      "label": "Ingredients Intro Text",
-      "default": "This is the full formula. No proprietary blend hiding behind a label. No filler stretching the bottle out. Seven wild-harvested herbs, each one doing exactly one job."
-    },
-    {
-      "type": "text",
-      "id": "who_heading",
-      "label": "Who This Is For Heading",
-      "default": ""
-    },
-    {
-      "type": "textarea",
-      "id": "who_description",
-      "label": "Who This Is For Description",
-      "default": ""
-    },
-    {
-      "type": "image_picker",
-      "id": "who_image",
-      "label": "Who This Is For Image"
-    },
-    {
-      "type": "textarea",
-      "id": "disclaimer_text",
-      "label": "Disclaimer Text",
-      "default": "The statements on this site have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease and do not replace medical advice. Individual results may differ from person to person. Exercise and a healthy diet are necessary to achieve and maintain weight loss."
+      "id": "kaching_bundle_id",
+      "label": "Kaching Bundle ID",
+      "default": "cc1e3df8-e8bc-472b-b782-4892197577d7"
     }
   ],
   "blocks": [
     {
-      "type": "timeline_item",
-      "name": "Timeline Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "days",
-          "label": "Day Range",
-          "default": "Days 1-3"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "They feel it first"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Description text here"
-        }
-      ]
-    },
-    {
-      "type": "ingredient",
-      "name": "Ingredient",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Ingredient Image"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Ingredient Name",
-          "default": "Wild Mediterranean Wormwood"
-        },
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Subtitle",
-          "default": "The one that does the killing"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Description text"
-        }
-      ]
-    },
-    {
-      "type": "checklist_item",
-      "name": "Checklist Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Checklist Text",
-          "default": "Item text"
-        }
-      ]
-    },
-    {
-      "type": "faq_item",
-      "name": "FAQ Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "question",
-          "label": "Question",
-          "default": "How fast will I feel a difference?"
-        },
-        {
-          "type": "textarea",
-          "id": "answer",
-          "label": "Answer",
-          "default": "Answer text"
-        }
-      ]
+      "type": "@app"
     }
   ],
   "presets": [
     {
-      "name": "Protocol - \u201cItcher\u201d",
-      "blocks": [
-        {
-          "type": "faq_item",
-          "settings": {
-            "question": "How fast will I feel a difference?",
-            "answer": ""
-          }
-        },
-        {
-          "type": "faq_item",
-          "settings": {
-            "question": "How do I take it?",
-            "answer": ""
-          }
-        },
-        {
-          "type": "faq_item",
-          "settings": {
-            "question": "Can I pause or cancel?",
-            "answer": ""
-          }
-        },
-        {
-          "type": "faq_item",
-          "settings": {
-            "question": "Is there a guarantee?",
-            "answer": ""
-          }
-        },
-        {
-          "type": "faq_item",
-          "settings": {
-            "question": "Will my doctor approve?",
-            "answer": ""
-          }
-        }
-      ]
+      "name": "Protocol \u2013 \u201cItcher\u201d"
     }
   ]
 }
