@@ -1,0 +1,758 @@
+{{ "protocol-styles.css" | asset_url | stylesheet_tag }}
+
+<main class="protocol-page">
+  <!-- Sale Banner -->
+  <div class="sale-banner">
+    <div class="sale-banner__inner">
+      <span class="sale-banner__title">{{ section.settings.sale_text }}</span>
+      <span class="sale-banner__divider"></span>
+      <span class="sale-banner__discount">Save up to <span class="sale-banner__percent">{{ section.settings.sale_discount }}</span></span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="protocol-header">
+    <span class="protocol-header__brand">{{ section.settings.brand_name }}</span>
+  </header>
+
+  <div class="protocol-container">
+    <!-- Hero Section -->
+    <section class="protocol-hero">
+      <h1 class="protocol-hero__title">
+        Your <span class="protocol-hero__type">&ldquo;{{ section.settings.parasite_type }}&rdquo;</span> Cleanse Protocol Is Ready
+      </h1>
+
+      <div class="protocol-hero__intro">
+        <p>{{ section.settings.intro_paragraph_1 }}</p>
+        <p>{{ section.settings.intro_paragraph_2 }}</p>
+        <p>{{ section.settings.intro_paragraph_3 }}</p>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="protocol-hero__image">
+        {% if section.settings.hero_image %}
+          <img src="{{ section.settings.hero_image | image_url: width: 1024 }}" alt="Lumvelle Wormwood Drops bundle" loading="eager" width="1024" height="1024">
+        {% else %}
+          <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="Lumvelle Wormwood Drops bundle" loading="eager" width="1024" height="1024">
+        {% endif %}
+      </div>
+
+      <!-- Badges -->
+      <div class="protocol-badges">
+        <div class="protocol-badge">
+          <div class="protocol-badge__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+          </div>
+          <span class="protocol-badge__label">Vegan</span>
+        </div>
+        <div class="protocol-badge">
+          <div class="protocol-badge__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"></path><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"></path><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path></svg>
+          </div>
+          <span class="protocol-badge__label">Gluten-Free</span>
+        </div>
+        <div class="protocol-badge">
+          <div class="protocol-badge__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"></path></svg>
+          </div>
+          <span class="protocol-badge__label">Made in USA</span>
+        </div>
+        <div class="protocol-badge">
+          <div class="protocol-badge__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M4.929 4.929 19.07 19.071"></path></svg>
+          </div>
+          <span class="protocol-badge__label">Non-GMO</span>
+        </div>
+      </div>
+
+      <!-- Pricing Options -->
+      <div class="protocol-pricing">
+        <a href="{{ section.settings.option1_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+          <div class="protocol-pricing__option-inner">
+            {% if section.settings.bottle_1_image %}
+              <img src="{{ section.settings.bottle_1_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
+            {% else %}
+              <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
+            {% endif %}
+            <div class="protocol-pricing__info">
+              <div class="protocol-pricing__title">{{ section.settings.option1_title }}</div>
+              <div class="protocol-pricing__subtitle">{{ section.settings.option1_subtitle }}</div>
+            </div>
+            <div class="protocol-pricing__prices">
+              <div class="protocol-pricing__price">{{ section.settings.option1_price }}</div>
+              <div class="protocol-pricing__compare">{{ section.settings.option1_compare_price }}</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="{{ section.settings.option2_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--featured">
+          <div class="protocol-pricing__option-inner">
+            {% if section.settings.bottle_3_image %}
+              <img src="{{ section.settings.bottle_3_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
+            {% else %}
+              <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
+            {% endif %}
+            <div class="protocol-pricing__info">
+              <div class="protocol-pricing__title">{{ section.settings.option2_title }}</div>
+              <div class="protocol-pricing__subtitle">{{ section.settings.option2_subtitle }}</div>
+            </div>
+            <div class="protocol-pricing__prices">
+              <div class="protocol-pricing__price">{{ section.settings.option2_price }}</div>
+              <div class="protocol-pricing__compare">{{ section.settings.option2_compare_price }}</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="{{ section.settings.option3_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+          <div class="protocol-pricing__option-inner">
+            {% if section.settings.bottle_5_image %}
+              <img src="{{ section.settings.bottle_5_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
+            {% else %}
+              <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
+            {% endif %}
+            <div class="protocol-pricing__info">
+              <div class="protocol-pricing__title">{{ section.settings.option3_title }}</div>
+              <div class="protocol-pricing__subtitle">{{ section.settings.option3_subtitle }}</div>
+            </div>
+            <div class="protocol-pricing__prices">
+              <div class="protocol-pricing__price">{{ section.settings.option3_price }}</div>
+              <div class="protocol-pricing__compare">{{ section.settings.option3_compare_price }}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- CTA Button -->
+      <a href="{{ section.settings.cta_button_url }}" class="protocol-cta">
+        <span>{{ section.settings.cta_button_text }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+      </a>
+
+      <!-- Subscription Info -->
+      <div class="protocol-subscription-info">
+        <span class="protocol-subscription-info__item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+          Refills ship every 30 days
+        </span>
+        <span class="protocol-subscription-info__divider"></span>
+        <span class="protocol-subscription-info__item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+          Stop or cancel anytime
+        </span>
+      </div>
+
+      <!-- Delivery Info -->
+      <div class="protocol-delivery">
+        <div class="protocol-delivery__inner">
+          <div class="protocol-delivery__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div class="protocol-delivery__content">
+            <div class="protocol-delivery__badges">
+              <span class="protocol-delivery__priority">Priority</span>
+              <span class="protocol-delivery__express">Express delivery</span>
+            </div>
+            <p class="protocol-delivery__text">Arrives in <strong>{{ section.settings.delivery_city }}</strong> by <strong>{{ section.settings.delivery_date }}</strong></p>
+            <p class="protocol-delivery__subtext">Routed locally for faster accessibility</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stock Urgency -->
+      <div class="protocol-stock">
+        <div class="protocol-stock__inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-stock__icon"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
+          <div class="protocol-stock__content">
+            <p>Only <strong>{{ section.settings.stock_bottles_left }} bottles left</strong> in batch <strong>{{ section.settings.stock_batch_number }}</strong></p>
+            <p class="protocol-stock__warning">Low availability &mdash; {{ section.settings.stock_percentage }}% of this batch already claimed</p>
+          </div>
+        </div>
+        <div class="protocol-stock__bar">
+          <div class="protocol-stock__bar-fill" style="width: {{ section.settings.stock_percentage }}%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="protocol-timeline">
+      <div class="protocol-section-badge">
+        <span>What you&rsquo;ll feel</span>
+      </div>
+      <h2 class="protocol-timeline__heading">{{ section.settings.timeline_heading }}</h2>
+
+      <ol class="protocol-timeline__list">
+        {% for block in section.blocks %}
+          {% if block.type == "timeline_item" %}
+            <li class="protocol-timeline__item" {{ block.shopify_attributes }}>
+              <div class="protocol-timeline__item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="protocol-timeline__item-content">
+                <span class="protocol-timeline__item-days">{{ block.settings.days }}</span>
+                <span class="protocol-timeline__item-title">{{ block.settings.title }}</span>
+                <p class="protocol-timeline__item-desc">{{ block.settings.description }}</p>
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </section>
+
+    <!-- Ingredients Section -->
+    <section class="protocol-ingredients">
+      <div class="protocol-section-badge protocol-section-badge--green">
+        <span>What&rsquo;s inside</span>
+      </div>
+      <h2 class="protocol-ingredients__heading">{{ section.settings.ingredients_heading }}</h2>
+      <p class="protocol-ingredients__intro">{{ section.settings.ingredients_intro }}</p>
+
+      <ul class="protocol-ingredients__list">
+        {% for block in section.blocks %}
+          {% if block.type == "ingredient" %}
+            <li class="protocol-ingredients__item" {{ block.shopify_attributes }}>
+              <div class="protocol-ingredients__item-image">
+                {% if block.settings.image %}
+                  <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.name }}" loading="lazy">
+                {% else %}
+                  <img src="{{ block.settings.name | handleize | prepend: 'herb-' | append: '.jpg' | asset_url }}" alt="{{ block.settings.name }}" loading="lazy">
+                {% endif %}
+              </div>
+              <div class="protocol-ingredients__item-content">
+                <span class="protocol-ingredients__item-name">{{ block.settings.name }}</span>
+                <span class="protocol-ingredients__item-subtitle">{{ block.settings.subtitle }}</span>
+                <p class="protocol-ingredients__item-desc">{{ block.settings.description }}</p>
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- Who This Is For Section -->
+    <section class="protocol-who">
+      <div class="protocol-section-badge protocol-section-badge--amber">
+        <span>Who this is for</span>
+      </div>
+
+      <div class="protocol-who__image-wrapper">
+        {% if section.settings.who_image %}
+          <img src="{{ section.settings.who_image | image_url: width: 600 }}" alt="" class="protocol-who__image" loading="lazy">
+        {% else %}
+          <img src="{{ "plush-over40.jpg" | asset_url }}" alt="" class="protocol-who__image" loading="lazy">
+        {% endif %}
+      </div>
+
+      <h2 class="protocol-who__heading">{{ section.settings.who_heading }}</h2>
+      <p class="protocol-who__description">{{ section.settings.who_description }}</p>
+
+      <ul class="protocol-who__checklist">
+        {% for block in section.blocks %}
+          {% if block.type == "checklist_item" %}
+            <li class="protocol-who__checklist-item" {{ block.shopify_attributes }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="protocol-faq">
+      <div class="protocol-section-badge">
+        <span>Common questions</span>
+      </div>
+
+      <div class="protocol-faq__list">
+        {% for block in section.blocks %}
+          {% if block.type == "faq_item" %}
+            <details class="protocol-faq__item" {{ block.shopify_attributes }}>
+              <summary class="protocol-faq__question">
+                <span>{{ block.settings.question }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
+              </summary>
+              <div class="protocol-faq__answer">
+                <p>{{ block.settings.answer }}</p>
+              </div>
+            </details>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Second CTA Section (repeat pricing) -->
+    <section class="protocol-hero protocol-hero--repeat">
+      <div class="protocol-pricing">
+        <a href="{{ section.settings.option1_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+          <div class="protocol-pricing__option-inner">
+            {% if section.settings.bottle_1_image %}
+              <img src="{{ section.settings.bottle_1_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
+            {% else %}
+              <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
+            {% endif %}
+            <div class="protocol-pricing__info">
+              <div class="protocol-pricing__title">{{ section.settings.option1_title }}</div>
+              <div class="protocol-pricing__subtitle">{{ section.settings.option1_subtitle }}</div>
+            </div>
+            <div class="protocol-pricing__prices">
+              <div class="protocol-pricing__price">{{ section.settings.option1_price }}</div>
+              <div class="protocol-pricing__compare">{{ section.settings.option1_compare_price }}</div>
+            </div>
+          </div>
+        </a>
+        <a href="{{ section.settings.option2_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--featured">
+          <div class="protocol-pricing__option-inner">
+            {% if section.settings.bottle_3_image %}
+              <img src="{{ section.settings.bottle_3_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
+            {% else %}
+              <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
+            {% endif %}
+            <div class="protocol-pricing__info">
+              <div class="protocol-pricing__title">{{ section.settings.option2_title }}</div>
+              <div class="protocol-pricing__subtitle">{{ section.settings.option2_subtitle }}</div>
+            </div>
+            <div class="protocol-pricing__prices">
+              <div class="protocol-pricing__price">{{ section.settings.option2_price }}</div>
+              <div class="protocol-pricing__compare">{{ section.settings.option2_compare_price }}</div>
+            </div>
+          </div>
+        </a>
+        <a href="{{ section.settings.option3_url | default: section.settings.cta_button_url }}" class="protocol-pricing__option protocol-pricing__option--default">
+          <div class="protocol-pricing__option-inner">
+            {% if section.settings.bottle_5_image %}
+              <img src="{{ section.settings.bottle_5_image | image_url: width: 128 }}" alt="" class="protocol-pricing__thumb">
+            {% else %}
+              <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
+            {% endif %}
+            <div class="protocol-pricing__info">
+              <div class="protocol-pricing__title">{{ section.settings.option3_title }}</div>
+              <div class="protocol-pricing__subtitle">{{ section.settings.option3_subtitle }}</div>
+            </div>
+            <div class="protocol-pricing__prices">
+              <div class="protocol-pricing__price">{{ section.settings.option3_price }}</div>
+              <div class="protocol-pricing__compare">{{ section.settings.option3_compare_price }}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <a href="{{ section.settings.cta_button_url }}" class="protocol-cta">
+        <span>{{ section.settings.cta_button_text }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+      </a>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="protocol-trust">
+      <div class="protocol-trust__badges">
+        <div class="protocol-trust__badge">
+          <div class="protocol-trust__badge-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+          </div>
+          <span>Free Shipping</span>
+        </div>
+        <div class="protocol-trust__badge">
+          <div class="protocol-trust__badge-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>
+          </div>
+          <span>Excellent Support</span>
+        </div>
+        <div class="protocol-trust__badge">
+          <div class="protocol-trust__badge-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </div>
+          <span>90-Day Risk-Free Guarantee</span>
+        </div>
+      </div>
+
+      <div class="protocol-trust__payments">
+        <img src="{{ "paypal.svg" | asset_url }}" alt="PayPal" loading="lazy">
+        <img src="{{ "visa.svg" | asset_url }}" alt="Visa" loading="lazy">
+        <img src="{{ "mastercard.svg" | asset_url }}" alt="Mastercard" loading="lazy">
+        <img src="{{ "amex.svg" | asset_url }}" alt="American Express" loading="lazy">
+        <img src="{{ "stripe.svg" | asset_url }}" alt="Stripe" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="protocol-footer">
+      <div class="protocol-footer__brand">{{ section.settings.brand_name }}</div>
+      <p class="protocol-footer__copyright">{{ section.settings.brand_name }} 2026 &copy; All rights reserved</p>
+      <p class="protocol-footer__disclaimer"><strong>Disclaimer!</strong> {{ section.settings.disclaimer_text }}</p>
+      <a href="/" class="protocol-footer__retake">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        Retake quiz
+      </a>
+      <p class="protocol-footer__privacy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        Your responses are confidential and used only to personalize your results.
+      </p>
+    </footer>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Protocol - \u201cFeeder\u201d",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sale_text",
+      "label": "Sale Banner Text",
+      "default": "Spring Sale"
+    },
+    {
+      "type": "text",
+      "id": "sale_discount",
+      "label": "Sale Discount Percentage",
+      "default": "70%"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Lumvelle"
+    },
+    {
+      "type": "text",
+      "id": "parasite_type",
+      "label": "Parasite Type Name",
+      "default": "\u201cFeeder\u201d"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_paragraph_1",
+      "label": "Intro Paragraph 1",
+      "default": "Based on your <strong class=\"text-foreground\">symptoms</strong>, you fit the exact profile this formula was built for. That\u2019s why we\u2019re able to extend this offer to you."
+    },
+    {
+      "type": "textarea",
+      "id": "intro_paragraph_2",
+      "label": "Intro Paragraph 2",
+      "default": "It\u2019s our pleasure to send you <strong class=\"text-foreground\">1 or 2 bottles completely free</strong>. This is the deepest discount Lumvelle is ever sold at and the only place to claim it. Not on Amazon. Not on our main site. Yours for the next 15 minutes."
+    },
+    {
+      "type": "textarea",
+      "id": "intro_paragraph_3",
+      "label": "Intro Paragraph 3",
+      "default": "Pick the <strong class=\"text-foreground\">3 bottle</strong> to feel like yourself again. Pick the <strong class=\"text-foreground\">5 bottle</strong> to stay that way."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_1_image",
+      "label": "Single Bottle Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_3_image",
+      "label": "3 Bottles Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_5_image",
+      "label": "5 Bottles Image"
+    },
+    {
+      "type": "text",
+      "id": "option1_title",
+      "label": "Option 1 Title",
+      "default": "Buy One"
+    },
+    {
+      "type": "text",
+      "id": "option1_subtitle",
+      "label": "Option 1 Subtitle",
+      "default": "You save 71%"
+    },
+    {
+      "type": "text",
+      "id": "option1_price",
+      "label": "Option 1 Price",
+      "default": "$19.95"
+    },
+    {
+      "type": "text",
+      "id": "option1_compare_price",
+      "label": "Option 1 Compare Price",
+      "default": "$69.99"
+    },
+    {
+      "type": "url",
+      "id": "option1_url",
+      "label": "Option 1 Link URL"
+    },
+    {
+      "type": "text",
+      "id": "option2_title",
+      "label": "Option 2 Title",
+      "default": "Buy 2 Get 1 FREE"
+    },
+    {
+      "type": "text",
+      "id": "option2_subtitle",
+      "label": "Option 2 Subtitle",
+      "default": "You save 81%"
+    },
+    {
+      "type": "text",
+      "id": "option2_price",
+      "label": "Option 2 Price",
+      "default": "$39.95"
+    },
+    {
+      "type": "text",
+      "id": "option2_compare_price",
+      "label": "Option 2 Compare Price",
+      "default": "$209.97"
+    },
+    {
+      "type": "url",
+      "id": "option2_url",
+      "label": "Option 2 Link URL"
+    },
+    {
+      "type": "text",
+      "id": "option3_title",
+      "label": "Option 3 Title",
+      "default": "Buy 3 Get 2 FREE"
+    },
+    {
+      "type": "text",
+      "id": "option3_subtitle",
+      "label": "Option 3 Subtitle",
+      "default": "You save 83%"
+    },
+    {
+      "type": "text",
+      "id": "option3_price",
+      "label": "Option 3 Price",
+      "default": "$59.95"
+    },
+    {
+      "type": "text",
+      "id": "option3_compare_price",
+      "label": "Option 3 Compare Price",
+      "default": "$349.95"
+    },
+    {
+      "type": "url",
+      "id": "option3_url",
+      "label": "Option 3 Link URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "Check Availability"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "delivery_city",
+      "label": "Delivery City (dynamic)",
+      "default": "your area"
+    },
+    {
+      "type": "text",
+      "id": "delivery_date",
+      "label": "Delivery Date",
+      "default": "Sun, Jun 28"
+    },
+    {
+      "type": "text",
+      "id": "stock_bottles_left",
+      "label": "Bottles Left Count",
+      "default": "15"
+    },
+    {
+      "type": "text",
+      "id": "stock_batch_number",
+      "label": "Batch Number",
+      "default": "#4231"
+    },
+    {
+      "type": "text",
+      "id": "stock_percentage",
+      "label": "Stock Claimed Percentage",
+      "default": "98"
+    },
+    {
+      "type": "text",
+      "id": "timeline_heading",
+      "label": "Timeline Section Heading",
+      "default": "In 21 days, your body becomes unrecognizable to you."
+    },
+    {
+      "type": "text",
+      "id": "ingredients_heading",
+      "label": "Ingredients Section Heading",
+      "default": "Seven herbs. One bottle. Nothing you can't pronounce."
+    },
+    {
+      "type": "textarea",
+      "id": "ingredients_intro",
+      "label": "Ingredients Intro Text",
+      "default": "This is the full formula. No proprietary blend hiding behind a label. No filler stretching the bottle out. Seven wild-harvested herbs, each one doing exactly one job."
+    },
+    {
+      "type": "text",
+      "id": "who_heading",
+      "label": "Who This Is For Heading",
+      "default": ""
+    },
+    {
+      "type": "textarea",
+      "id": "who_description",
+      "label": "Who This Is For Description",
+      "default": ""
+    },
+    {
+      "type": "image_picker",
+      "id": "who_image",
+      "label": "Who This Is For Image"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer_text",
+      "label": "Disclaimer Text",
+      "default": "The statements on this site have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease and do not replace medical advice. Individual results may differ from person to person. Exercise and a healthy diet are necessary to achieve and maintain weight loss."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_item",
+      "name": "Timeline Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "days",
+          "label": "Day Range",
+          "default": "Days 1-3"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "They feel it first"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Description text here"
+        }
+      ]
+    },
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ingredient Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Ingredient Name",
+          "default": "Wild Mediterranean Wormwood"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "The one that does the killing"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Description text"
+        }
+      ]
+    },
+    {
+      "type": "checklist_item",
+      "name": "Checklist Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Checklist Text",
+          "default": "Item text"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How fast will I feel a difference?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Answer text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Protocol - \u201cFeeder\u201d",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How fast will I feel a difference?",
+            "answer": ""
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I take it?",
+            "answer": ""
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I pause or cancel?",
+            "answer": ""
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is there a guarantee?",
+            "answer": ""
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will my doctor approve?",
+            "answer": ""
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
