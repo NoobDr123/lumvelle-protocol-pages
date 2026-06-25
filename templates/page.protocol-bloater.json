@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "protocol-bloater",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

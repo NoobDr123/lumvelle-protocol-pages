@@ -1,4 +1,4 @@
-{{ "protocol-styles.css" | asset_url | stylesheet_tag }}
+<style>{% render 'protocol-styles.css' %}</style>
 
 <main class="protocol-page">
   <!-- Sale Banner -->
@@ -393,7 +393,7 @@
 
 {% schema %}
 {
-  "name": "Protocol - \u201cHijacker\u201d",
+  "name": "Protocol - \u201cSneak\u201d",
   "settings": [
     {
       "type": "text",
@@ -417,7 +417,7 @@
       "type": "text",
       "id": "parasite_type",
       "label": "Parasite Type Name",
-      "default": "\u201cHijacker\u201d"
+      "default": "\u201cSneak\u201d"
     },
     {
       "type": "textarea",
@@ -714,7 +714,7 @@
   ],
   "presets": [
     {
-      "name": "Protocol - \u201cHijacker\u201d",
+      "name": "Protocol - \u201cSneak\u201d",
       "blocks": [
         {
           "type": "faq_item",

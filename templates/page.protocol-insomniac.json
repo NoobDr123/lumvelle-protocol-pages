@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "protocol-insomniac",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

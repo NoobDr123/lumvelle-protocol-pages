@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "protocol-fog-maker",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
