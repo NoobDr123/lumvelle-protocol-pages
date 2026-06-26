@@ -599,24 +599,24 @@
   // Bundle option selection
   var sectionId = '{{ section.id }}';
   var bundleOptions = document.querySelectorAll('#bundle-options-' + sectionId + ' .bundle-option');
-  var selectedQuantity = 3; // default: Buy 2 Get 1 FREE
+  window.selectedQuantity = 3; // default: Buy 2 Get 1 FREE
   
   bundleOptions.forEach(function(option) {
     option.addEventListener('click', function() {
       bundleOptions.forEach(function(o) { o.classList.remove('selected'); });
       option.classList.add('selected');
-      selectedQuantity = parseInt(option.dataset.quantity) || 1;
+      window.selectedQuantity = parseInt(option.dataset.quantity) || 1;
     });
   });
 
   // Add to Cart and open side cart drawer
-  function protocolAddToCart() {
+  window.protocolAddToCart = function() {
     var variantId = 53090498314351;
     
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: [{ id: variantId, quantity: selectedQuantity }] })
+      body: JSON.stringify({ items: [{ id: variantId, quantity: window.selectedQuantity }] })
     })
     .then(function(response) { return response.json(); })
     .then(function(data) {
@@ -649,7 +649,7 @@
       console.error('Add to cart failed:', err);
       window.location.href = '/cart';
     });
-  }
+  };
 
   // Countdown Timer (15 minutes)
   var countdownEl = document.getElementById('countdown-' + sectionId);
