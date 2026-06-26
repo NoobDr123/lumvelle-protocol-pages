@@ -287,8 +287,6 @@
           Stop or cancel anytime
         </span>
       </div>
-    </section>
-
     <!-- Express Delivery -->
     <div class="delivery-box">
       <div class="delivery-inner">
@@ -319,6 +317,8 @@
         <div class="progress-fill" style="width: 92%;"></div>
       </div>
     </div>
+
+    </section>
 
     <!-- What You'll Feel Section -->
     <section class="card mt-6">
@@ -525,7 +525,7 @@
       <div class="faq-list" id="faq-list-{{ section.id }}">
         <div class="faq-item">
           <button class="faq-question" type="button">
-            <span>How fast will I feel a difference?</span>
+            <span>How Fast Will I Feel A Difference?</span>
             <span class="faq-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             </span>
@@ -534,7 +534,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">
-            <span>How do I take it?</span>
+            <span>How Do I Take It?</span>
             <span class="faq-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             </span>
@@ -543,7 +543,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">
-            <span>Can I pause or cancel?</span>
+            <span>Can I Pause Or Cancel?</span>
             <span class="faq-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             </span>
@@ -552,7 +552,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">
-            <span>Is there a guarantee?</span>
+            <span>Is There A Guarantee?</span>
             <span class="faq-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             </span>
@@ -561,7 +561,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">
-            <span>Will my doctor approve?</span>
+            <span>Will My Doctor Approve?</span>
             <span class="faq-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             </span>
@@ -632,6 +632,19 @@
 
 
 
+    <script>
+      (function() {
+        var faqItems = document.querySelectorAll('.protocol-section .faq-item');
+        faqItems.forEach(function(item) {
+          var btn = item.querySelector('.faq-question');
+          if (btn) {
+            btn.addEventListener('click', function() {
+              item.classList.toggle('open');
+            });
+          }
+        });
+      })();
+    </script>
 {% schema %}
 {
   "name": "Protocol Sneak",
