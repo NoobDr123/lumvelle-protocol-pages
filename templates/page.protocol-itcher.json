@@ -2,7 +2,10 @@
   "sections": {
     "main": {
       "type": "protocol-itcher",
-      "settings": {}
+      "settings": {
+        "product_handle": "lumvelle-wild-harvested-wormwood-herbal-drops",
+        "kaching_bundle_id": "cc1e3df8-e8bc-472b-b782-4892197577d7"
+      }
     }
   },
   "order": ["main"]

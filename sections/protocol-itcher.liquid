@@ -1,491 +1,660 @@
-<style>{% render 'protocol-styles.css' %}</style>
+<style>
+  .protocol-section * { box-sizing: border-box; margin: 0; padding: 0; }
+  .protocol-section { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a1a; background: #f7f5ee; min-height: 100vh; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .protocol-section .font-serif { font-family: Georgia, 'Times New Roman', serif; }
+  .protocol-section .sale-bar { width: 100%; background: linear-gradient(to right, #2d4a2b, #3a5d36, #b8954a); padding: 12px 16px; text-align: center; }
+  .protocol-section .sale-bar-inner { max-width: 672px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 12px; color: #fff; }
+  .protocol-section .sale-bar .sale-text { font-family: Georgia, serif; font-size: 20px; font-style: italic; }
+  .protocol-section .sale-bar .save-text { font-size: 14px; font-weight: 700; letter-spacing: 0.5px; }
+  .protocol-section .sale-bar .save-text span { font-size: 22px; }
+  .protocol-section .sale-bar .divider { width: 1px; height: 24px; background: rgba(255,255,255,0.4); }
+  .protocol-section .brand-header { padding: 24px 20px; text-align: center; }
+  .protocol-section .brand-header h2 { font-family: Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+  .protocol-section .content-container { max-width: 580px; margin: 0 auto; padding: 0 16px 80px; }
+  .protocol-section .card { border-radius: 24px; border: 6px solid #c9d4c2; background: #fff; padding: 20px; }
+  @media (min-width: 640px) { .protocol-section .card { padding: 32px; } }
+  .protocol-section .card-gold { border-color: #e8dcc4; }
+  .protocol-section .card-purple { border-color: #d4c5f0; }
+  .protocol-section .card-urgency { border-color: #e8e0c8; background: #faf6ec; }
+  .protocol-section .card + .card, .protocol-section .card + .delivery-box, .protocol-section .delivery-box + .stock-box, .protocol-section .stock-box + .card { margin-top: 24px; }
+  .protocol-section .mt-6 { margin-top: 24px; }
+  .protocol-section .hero-heading { font-family: Georgia, serif; font-size: 32px; font-weight: 700; line-height: 1.2; text-align: center; }
+  @media (min-width: 640px) { .protocol-section .hero-heading { font-size: 36px; } }
+  .protocol-section .hero-heading em { font-style: italic; color: #2d4a2b; }
+  .protocol-section .hero-sub { text-align: center; color: #6b6b6b; font-size: 14px; margin-top: 16px; line-height: 1.6; }
+  .protocol-section .hero-sub strong { color: #1a1a1a; }
+  .protocol-section .product-img { display: block; max-width: 320px; width: 100%; margin: 32px auto; }
+  .protocol-section .trust-badges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; margin-top: 32px; }
+  .protocol-section .trust-badge { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .protocol-section .trust-badge svg { width: 28px; height: 28px; color: #5a5a5a; }
+  .protocol-section .trust-badge span { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #6b6b6b; }
+  .protocol-section .bundle-options { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .protocol-section .bundle-option { position: relative; width: 100%; border-radius: 16px; border: 1.5px solid #dcd6c5; background: #fff; text-align: left; cursor: pointer; transition: all 0.2s; padding: 0; }
+  .protocol-section .bundle-option:hover { border-color: rgba(45,74,43,0.5); }
+  .protocol-section .bundle-option.selected { border-color: #2d4a2b; background: #eaf1e6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .protocol-section .bundle-option-inner { display: flex; align-items: center; gap: 12px; padding: 16px; }
+  @media (min-width: 640px) { .protocol-section .bundle-option-inner { gap: 16px; padding: 16px 20px; } }
+  .protocol-section .bundle-option img { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
+  .protocol-section .bundle-option .bundle-info { flex: 1; min-width: 0; }
+  .protocol-section .bundle-option .bundle-title { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .protocol-section .bundle-option .bundle-save { font-size: 12px; color: #6b6b6b; margin-top: 2px; }
+  .protocol-section .bundle-option .bundle-price { text-align: right; flex-shrink: 0; }
+  .protocol-section .bundle-option .bundle-price .current { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .protocol-section .bundle-option .bundle-price .original { font-size: 13px; color: #999; text-decoration: line-through; display: block; }
+  .protocol-section .cta-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 56px; border-radius: 12px; background: #2d4a2b; color: #fff; font-size: 16px; font-weight: 600; border: none; cursor: pointer; margin-top: 24px; transition: background 0.2s; }
+  .protocol-section .cta-button:hover { background: #1f3a1d; }
+  .protocol-section .cta-button svg { width: 18px; height: 18px; }
+  .protocol-section .sub-info { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 10px; color: #999; white-space: nowrap; }
+  @media (min-width: 640px) { .protocol-section .sub-info { gap: 16px; font-size: 11px; } }
+  .protocol-section .sub-info svg { width: 12px; height: 12px; flex-shrink: 0; }
+  .protocol-section .sub-info-item { display: flex; align-items: center; gap: 4px; }
+  .protocol-section .delivery-box { position: relative; overflow: hidden; border-radius: 12px; border: 1px solid #c9d4c2; background: linear-gradient(to bottom right, #f4f7f0, #eaf1e6); padding: 14px; margin-top: 16px; }
+  .protocol-section .delivery-inner { display: flex; align-items: flex-start; gap: 12px; }
+  .protocol-section .delivery-icon { display: flex; width: 36px; height: 36px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 50%; background: #2d4a2b; color: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+  .protocol-section .delivery-icon svg { width: 18px; height: 18px; }
+  .protocol-section .delivery-content { flex: 1; min-width: 0; }
+  .protocol-section .delivery-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .protocol-section .badge-priority { border-radius: 4px; background: #2d4a2b; padding: 2px 8px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+  .protocol-section .badge-express { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #1a1a1a; }
+  .protocol-section .delivery-text { margin-top: 4px; font-size: 13px; color: #1a1a1a; }
+  .protocol-section .delivery-text strong { font-weight: 700; }
+  .protocol-section .delivery-sub { margin-top: 2px; font-size: 11px; color: #6b6b6b; }
+  .protocol-section .stock-box { border-radius: 12px; border: 1px solid #e8a8a8; background: #fdf2f2; padding: 14px; margin-top: 12px; }
+  .protocol-section .stock-inner { display: flex; align-items: flex-start; gap: 12px; }
+  .protocol-section .stock-icon { margin-top: 2px; width: 20px; height: 20px; flex-shrink: 0; color: #d23b3b; }
+  .protocol-section .stock-content { flex: 1; min-width: 0; font-size: 13px; line-height: 1.4; color: #1a1a1a; }
+  .protocol-section .stock-content strong { font-weight: 700; }
+  .protocol-section .stock-low { margin-top: 2px; font-size: 11px; font-weight: 500; color: #b13838; }
+  .protocol-section .progress-bar { margin-top: 10px; height: 6px; width: 100%; overflow: hidden; border-radius: 9999px; background: #f7d4d4; }
+  .protocol-section .progress-fill { height: 100%; border-radius: 9999px; background: linear-gradient(to right, #d23b3b, #b32424); transition: width 0.3s; }
+  .protocol-section .section-badge { display: inline-block; border-radius: 6px; padding: 8px 16px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; }
+  .protocol-section .badge-green { background: #2d4a2b; }
+  .protocol-section .badge-gold { background: #b8954a; }
+  .protocol-section .badge-purple { background: #5b3f8b; }
+  .protocol-section .section-heading { margin-top: 20px; text-align: center; font-family: Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.2; }
+  @media (min-width: 640px) { .protocol-section .section-heading { font-size: 30px; } }
+  .protocol-section .section-sub { margin-top: 12px; text-align: center; font-size: 14px; color: #6b6b6b; line-height: 1.6; }
+  .protocol-section .timeline-list { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; list-style: none; }
+  .protocol-section .timeline-item { display: flex; gap: 16px; border-radius: 16px; background: #f5f3ef; padding: 16px; }
+  .protocol-section .timeline-icon { display: flex; width: 48px; height: 48px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 50%; background: #2d4a2b; color: #fff; }
+  .protocol-section .timeline-icon svg { width: 24px; height: 24px; }
+  .protocol-section .timeline-content { flex: 1; min-width: 0; }
+  .protocol-section .timeline-days { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6b6b6b; }
+  .protocol-section .timeline-title { margin-top: 4px; font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .protocol-section .timeline-desc { margin-top: 6px; font-size: 14px; color: #6b6b6b; line-height: 1.5; }
+  .protocol-section .herbs-list { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; list-style: none; }
+  .protocol-section .herb-item { display: flex; gap: 16px; overflow: hidden; border-radius: 16px; border: 1px solid #e8dcc4; background: #fdfbf6; padding: 16px; }
+  .protocol-section .herb-img { width: 96px; height: 96px; flex-shrink: 0; border-radius: 12px; background: #f5efe0; object-fit: cover; }
+  .protocol-section .herb-content { flex: 1; min-width: 0; }
+  .protocol-section .herb-name { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .protocol-section .herb-subtitle { margin-top: 2px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #b8954a; }
+  .protocol-section .herb-desc { margin-top: 6px; font-size: 14px; color: #6b6b6b; line-height: 1.5; }
+  .protocol-section .herbs-footer { margin-top: 16px; text-align: center; font-size: 13px; color: #6b6b6b; font-style: italic; }
+  .protocol-section .reviews-badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 9999px; background: #fff6e0; padding: 6px 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: #a07c1e; }
+  .protocol-section .reviews-badge svg { width: 14px; height: 14px; fill: #f4c430; color: #f4c430; }
+  .protocol-section .testimonial-list { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; list-style: none; }
+  .protocol-section .testimonial-item { display: flex; gap: 16px; border-radius: 16px; background: #f5f3ef; padding: 16px; }
+  .protocol-section .testimonial-avatar { width: 64px; height: 64px; flex-shrink: 0; border-radius: 50%; object-fit: cover; object-position: top; }
+  .protocol-section .testimonial-content { flex: 1; min-width: 0; }
+  .protocol-section .testimonial-header { display: flex; align-items: center; gap: 8px; }
+  .protocol-section .testimonial-name { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .protocol-section .testimonial-stars { display: inline-flex; align-items: center; gap: 2px; color: #f4c430; }
+  .protocol-section .testimonial-stars svg { width: 12px; height: 12px; fill: currentColor; }
+  .protocol-section .testimonial-text { margin-top: 6px; font-size: 14px; font-style: italic; color: #4a4a4a; line-height: 1.5; }
+  .protocol-section .testimonial-time { margin-top: 6px; display: flex; align-items: center; gap: 4px; font-size: 12px; color: #999; }
+  .protocol-section .testimonial-time svg { width: 12px; height: 12px; }
+  .protocol-section .faq-list { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+  .protocol-section .faq-item { border-radius: 16px; border: 1px solid #e8e4dc; background: #fdfbf6; overflow: hidden; transition: all 0.2s; }
+  .protocol-section .faq-item:hover { background: #f5f3ef; }
+  .protocol-section .faq-question { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; background: none; border: none; cursor: pointer; text-align: left; font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .protocol-section .faq-toggle { display: flex; width: 24px; height: 24px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 50%; background: #2d4a2b; color: #fff; }
+  .protocol-section .faq-toggle svg { width: 14px; height: 14px; transition: transform 0.2s; }
+  .protocol-section .faq-answer { padding: 0 16px 16px; font-size: 14px; color: #6b6b6b; line-height: 1.6; display: none; }
+  .protocol-section .faq-item.open .faq-answer { display: block; }
+  .protocol-section .faq-item.open .faq-toggle svg { transform: rotate(45deg); }
+  .protocol-section .urgency-section { text-align: center; }
+  .protocol-section .urgency-icon { margin: 0 auto; width: 32px; height: 32px; color: #c9a64a; }
+  .protocol-section .urgency-heading { margin-top: 12px; font-family: Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.2; color: #5b3f8b; }
+  .protocol-section .urgency-sub { margin-top: 8px; font-size: 14px; color: #6b6b6b; }
+  .protocol-section .trust-footer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: center; }
+  .protocol-section .trust-footer-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .protocol-section .trust-footer-icon { display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid rgba(26,26,26,0.8); color: #1a1a1a; }
+  .protocol-section .trust-footer-icon svg { width: 28px; height: 28px; }
+  .protocol-section .trust-footer-label { font-size: 12px; font-weight: 500; color: #6b6b6b; }
+  .protocol-section .payment-icons { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
+  .protocol-section .payment-icons img { height: 24px; width: auto; object-fit: contain; }
+  .protocol-section .payment-icons img.tall { height: 28px; }
+  .protocol-section .page-footer { margin-top: 40px; text-align: center; }
+  .protocol-section .footer-brand { font-family: Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+  .protocol-section .footer-copy { margin-top: 8px; font-size: 12px; color: #999; }
+  .protocol-section .footer-disclaimer { margin: 24px auto 0; max-width: 448px; font-size: 12px; color: #999; line-height: 1.6; text-wrap: pretty; }
+  .protocol-section .footer-disclaimer strong { color: #1a1a1a; }
+  .protocol-section .retake-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 32px; font-size: 14px; color: #999; text-decoration: none; }
+  .protocol-section .retake-link:hover { color: #1a1a1a; }
+  .protocol-section .retake-link svg { width: 16px; height: 16px; }
+  .protocol-section .confidential { margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #999; }
+  .protocol-section .confidential svg { width: 14px; height: 14px; }
+  .protocol-section .text-center { text-align: center; }
+  .protocol-section .flex-center { display: flex; justify-content: center; }
+  .protocol-section .kaching-placeholder { margin-top: 24px; }
+</style>
 
-<main class="protocol-page">
-  <!-- Sale Banner -->
-  <div class="sale-banner">
-    <div class="sale-banner__inner">
-      <span class="sale-banner__title">Spring Sale</span>
-      <span class="sale-banner__divider"></span>
-      <span class="sale-banner__discount">Save up to <span class="sale-banner__percent">70%</span></span>
+<div class="protocol-section">
+  <!-- Sale Header Bar -->
+  <div class="sale-bar">
+    <div class="sale-bar-inner">
+      <span class="sale-text">Spring Sale</span>
+      <span class="divider"></span>
+      <span class="save-text">SAVE UP TO <span>70%</span></span>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="protocol-header">
-    <span class="protocol-header__brand">Lumvelle</span>
+  <!-- Brand Header -->
+  <header class="brand-header">
+    <h2 class="font-serif">Lumvelle</h2>
   </header>
 
-  <div class="protocol-container">
+  <!-- Main Content -->
+  <div class="content-container">
+
     <!-- Hero Section -->
-    <section class="protocol-hero">
-      <h1 class="protocol-hero__title">
-        Your <span class="protocol-hero__type">&ldquo;Itcher&rdquo;</span> Cleanse Protocol Is Ready
-      </h1>
+    <section class="card">
+      <h1 class="hero-heading">Your &ldquo;<em>Itcher</em>&rdquo; Cleanse Protocol Is Ready</h1>
+      <p class="hero-sub">Based on your <strong>symptoms</strong>, you fit the exact profile this formula was built for. That's why we're able to extend this offer to you.</p>
+      <p class="hero-sub">It's our pleasure to send you <strong>1 or 2 bottles completely free</strong>. This is the deepest discount Lumvelle is ever sold at and the only place to claim it. Not on Amazon. Not on our main site. Yours for the next 15 minutes.</p>
+      <p class="hero-sub">Pick the <strong>3 bottle</strong> to feel like yourself again. Pick the <strong>5 bottle</strong> to stay that way.</p>
 
-      <div class="protocol-hero__intro">
-        <p>Based on your <strong class="text-foreground">symptoms</strong>, you fit the exact profile this formula was built for. That&rsquo;s why we&rsquo;re able to extend this offer to you.</p>
-        <p>It&rsquo;s our pleasure to send you <strong class="text-foreground">1 or 2 bottles completely free</strong>. This is the deepest discount Lumvelle is ever sold at and the only place to claim it. Not on Amazon. Not on our main site. Yours for the next 15 minutes.</p>
-        <p>Pick the <strong class="text-foreground">3 bottle</strong> to feel like yourself again. Pick the <strong class="text-foreground">5 bottle</strong> to stay that way.</p>
-      </div>
+      <img class="product-img" src="https://parasitequiz.app/assets/lumvelle-3-bottles-free-Bihf7I5z.png" alt="Lumvelle Wormwood Drops bundle" loading="lazy">
 
-      <!-- Hero Image -->
-      <div class="protocol-hero__image">
-          <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="Lumvelle Wormwood Drops bundle" loading="eager" width="1024" height="1024">
+      <!-- Trust Badges -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2 2.1 5.5A7 7 0 0 1 11 20Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          <span>Vegan</span>
         </div>
-
-      <!-- Badges -->
-      <div class="protocol-badges">
-        <div class="protocol-badge">
-          <div class="protocol-badge__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
-          </div>
-          <span class="protocol-badge__label">Vegan</span>
+        <div class="trust-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg>
+          <span>Gluten-Free</span>
         </div>
-        <div class="protocol-badge">
-          <div class="protocol-badge__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"></path><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"></path><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"></path><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"></path></svg>
-          </div>
-          <span class="protocol-badge__label">Gluten-Free</span>
+        <div class="trust-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+          <span>Made in USA</span>
         </div>
-        <div class="protocol-badge">
-          <div class="protocol-badge__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"></path></svg>
-          </div>
-          <span class="protocol-badge__label">Made in USA</span>
-        </div>
-        <div class="protocol-badge">
-          <div class="protocol-badge__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M4.929 4.929 19.07 19.071"></path></svg>
-          </div>
-          <span class="protocol-badge__label">Non-GMO</span>
+        <div class="trust-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+          <span>Non-GMO</span>
         </div>
       </div>
 
-      <!-- Pricing Options -->
-      <div class="protocol-pricing">
-        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
-          <div class="protocol-pricing__option-inner">
-            <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">Buy One</div>
-              <div class="protocol-pricing__subtitle">You save 71%</div>
-            </div>
-            <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">$19.95</div>
-              <div class="protocol-pricing__compare">$69.99</div>
-            </div>
-          </div>
-        </a>
-
-        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--featured">
-          <div class="protocol-pricing__option-inner">
-            <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">Buy 2 Get 1 FREE</div>
-              <div class="protocol-pricing__subtitle">You save 81%</div>
-            </div>
-            <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">$39.95</div>
-              <div class="protocol-pricing__compare">$209.97</div>
-            </div>
-          </div>
-        </a>
-
-        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
-          <div class="protocol-pricing__option-inner">
-            <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">Buy 3 Get 2 FREE</div>
-              <div class="protocol-pricing__subtitle">You save 83%</div>
-            </div>
-            <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">$59.95</div>
-              <div class="protocol-pricing__compare">$349.95</div>
-            </div>
-          </div>
-        </a>
+      <!-- Bundle Selector (Kaching App Block Placeholder) -->
+      <div class="kaching-placeholder">
+        {% for block in section.blocks %}
+          {% render block %}
+        {% endfor %}
       </div>
 
-      <!-- CTA Button -->
-      <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-cta">
-        <span>Check Availability</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
-      </a>
+      <!-- Static Fallback Bundle Selector -->
+      <form action="/cart/add" method="post" id="protocol-form-{{ section.id }}">
+        <input type="hidden" name="id" value="53090498314351" id="variant-id-{{ section.id }}">
+        <input type="hidden" name="quantity" value="1">
+
+        <div class="bundle-options" id="bundle-options-{{ section.id }}">
+          <button type="button" class="bundle-option" data-variant="53090498314351" data-quantity="1">
+            <div class="bundle-option-inner">
+              <img src="https://parasitequiz.app/assets/lumvelle-1-bottle-CuTxc2t4.png" alt="1 Bottle" loading="lazy">
+              <div class="bundle-info">
+                <div class="bundle-title">Buy One</div>
+                <div class="bundle-save">You save 71%</div>
+              </div>
+              <div class="bundle-price">
+                <span class="current">$19.95</span>
+                <span class="original">$69.99</span>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="bundle-option selected" data-variant="53090498314351" data-quantity="3">
+            <div class="bundle-option-inner">
+              <img src="https://parasitequiz.app/assets/lumvelle-3-bottles-free-Bihf7I5z.png" alt="3 Bottles" loading="lazy">
+              <div class="bundle-info">
+                <div class="bundle-title">Buy 2 Get 1 FREE</div>
+                <div class="bundle-save">You save 81%</div>
+              </div>
+              <div class="bundle-price">
+                <span class="current">$39.95</span>
+                <span class="original">$209.97</span>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="bundle-option" data-variant="53090498314351" data-quantity="5">
+            <div class="bundle-option-inner">
+              <img src="https://parasitequiz.app/assets/lumvelle-5-bottles-D4IfNKOd.png" alt="5 Bottles" loading="lazy">
+              <div class="bundle-info">
+                <div class="bundle-title">Buy 3 Get 2 FREE</div>
+                <div class="bundle-save">You save 83%</div>
+              </div>
+              <div class="bundle-price">
+                <span class="current">$59.95</span>
+                <span class="original">$349.95</span>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <button type="submit" class="cta-button">
+          Check Availability
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </form>
 
       <!-- Subscription Info -->
-      <div class="protocol-subscription-info">
-        <span class="protocol-subscription-info__item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+      <div class="sub-info">
+        <span class="sub-info-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
           Refills ship every 30 days
         </span>
-        <span class="protocol-subscription-info__divider"></span>
-        <span class="protocol-subscription-info__item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+        <span class="sub-info-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Stop or cancel anytime
         </span>
       </div>
-
-      <!-- Delivery Info -->
-      <div class="protocol-delivery">
-        <div class="protocol-delivery__inner">
-          <div class="protocol-delivery__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          </div>
-          <div class="protocol-delivery__content">
-            <div class="protocol-delivery__badges">
-              <span class="protocol-delivery__priority">Priority</span>
-              <span class="protocol-delivery__express">Express delivery</span>
-            </div>
-            <p class="protocol-delivery__text">Arrives in <strong>your area</strong> by <strong>Sun, Jun 28</strong></p>
-            <p class="protocol-delivery__subtext">Routed locally for faster accessibility</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stock Urgency -->
-      <div class="protocol-stock">
-        <div class="protocol-stock__inner">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-stock__icon"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
-          <div class="protocol-stock__content">
-            <p>Only <strong>15 bottles left</strong> in batch <strong>#4231</strong></p>
-            <p class="protocol-stock__warning">Low availability &mdash; 98% of this batch already claimed</p>
-          </div>
-        </div>
-        <div class="protocol-stock__bar">
-          <div class="protocol-stock__bar-fill" style="width: 98%;"></div>
-        </div>
-      </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section class="protocol-timeline">
-      <div class="protocol-section-badge">
-        <span>What you&rsquo;ll feel</span>
+    <!-- Express Delivery -->
+    <div class="delivery-box">
+      <div class="delivery-inner">
+        <div class="delivery-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="delivery-content">
+          <div class="delivery-badges">
+            <span class="badge-priority">Priority</span>
+            <span class="badge-express">Express delivery</span>
+          </div>
+          <p class="delivery-text">Arrives in <strong>your area</strong> by <strong>Mon, Jun 29</strong></p>
+          <p class="delivery-sub">Routed locally for faster accessibility</p>
+        </div>
       </div>
-      <h2 class="protocol-timeline__heading">In 21 days, your body becomes unrecognizable to you.</h2>
+    </div>
 
-      <ol class="protocol-timeline__list">
-            <li class="protocol-timeline__item">
-              <div class="protocol-timeline__item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <div class="protocol-timeline__item-content">
-                <span class="protocol-timeline__item-days">Days 1–3</span>
-                <span class="protocol-timeline__item-title">They feel it first</span>
-                <p class="protocol-timeline__item-desc">The parasites sense the shift before you do. Wormwood floods your gut and they start to scramble. You might feel mild bloating or fatigue — that’s the die-off beginning.</p>
-              </div>
-            </li>
-            <li class="protocol-timeline__item">
-              <div class="protocol-timeline__item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <div class="protocol-timeline__item-content">
-                <span class="protocol-timeline__item-days">Days 4–7</span>
-                <span class="protocol-timeline__item-title">The flush begins</span>
-                <p class="protocol-timeline__item-desc">Your body starts expelling what’s been hiding. Digestion moves faster. Bloating starts to ease. You may notice changes in your stool — that’s the protocol working.</p>
-              </div>
-            </li>
-            <li class="protocol-timeline__item">
-              <div class="protocol-timeline__item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <div class="protocol-timeline__item-content">
-                <span class="protocol-timeline__item-days">Days 8–14</span>
-                <span class="protocol-timeline__item-title">Energy returns</span>
-                <p class="protocol-timeline__item-desc">Without parasites draining your nutrients, your body starts absorbing food properly again. Mental fog lifts. You wake up feeling lighter, sharper, more like yourself.</p>
-              </div>
-            </li>
-            <li class="protocol-timeline__item">
-              <div class="protocol-timeline__item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <div class="protocol-timeline__item-content">
-                <span class="protocol-timeline__item-days">Days 15–21</span>
-                <span class="protocol-timeline__item-title">The reset completes</span>
-                <p class="protocol-timeline__item-desc">Your gut lining begins to heal. Cravings fade. Inflammation drops. This is where most people say they feel “like a completely different person.”</p>
-              </div>
-            </li>
-
-      </ol>
-    </section>
-
-    <!-- Ingredients Section -->
-    <section class="protocol-ingredients">
-      <div class="protocol-section-badge protocol-section-badge--green">
-        <span>What&rsquo;s inside</span>
+    <!-- Stock Urgency -->
+    <div class="stock-box">
+      <div class="stock-inner">
+        <svg class="stock-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+        <div class="stock-content">
+          <p>Only <strong>26 bottles left</strong> in batch <strong>#4230</strong></p>
+          <p class="stock-low">Low availability. 92% of this batch already claimed</p>
+        </div>
       </div>
-      <h2 class="protocol-ingredients__heading">Seven herbs. One bottle. Nothing you can&rsquo;t pronounce.</h2>
-      <p class="protocol-ingredients__intro">This is the full formula. No proprietary blend hiding behind a label. No filler stretching the bottle out. Seven wild-harvested herbs, each one doing exactly one job.</p>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 92%;"></div>
+      </div>
+    </div>
 
-      <ul class="protocol-ingredients__list">
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-wild-mediterranean-wormwood.jpg" | asset_url }}" alt="Wild Mediterranean Wormwood" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Wild Mediterranean Wormwood</span>
-                <span class="protocol-ingredients__item-subtitle">The one that does the killing</span>
-                <p class="protocol-ingredients__item-desc">Used for centuries to purge intestinal invaders. Artemisinin targets parasites at every life stage — eggs, larvae, adults. This is the backbone of the formula.</p>
-              </div>
-            </li>
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-black-walnut-hull.jpg" | asset_url }}" alt="Black Walnut Hull" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Black Walnut Hull</span>
-                <span class="protocol-ingredients__item-subtitle">Cuts off their oxygen</span>
-                <p class="protocol-ingredients__item-desc">The green hull contains juglone, a compound that suffocates parasites by disrupting their cellular respiration. Works especially well on intestinal worms.</p>
-              </div>
-            </li>
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-organic-clove-bud.jpg" | asset_url }}" alt="Organic Clove Bud" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Organic Clove Bud</span>
-                <span class="protocol-ingredients__item-subtitle">Destroys the eggs</span>
-                <p class="protocol-ingredients__item-desc">Most anti-parasitic herbs miss the eggs. Clove doesn’t. Its eugenol compound dissolves the protective casing around parasite eggs so they can’t hatch and reinfect you.</p>
-              </div>
-            </li>
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-garlic-bulb-extract.jpg" | asset_url }}" alt="Garlic Bulb Extract" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Garlic Bulb Extract</span>
-                <span class="protocol-ingredients__item-subtitle">Nature’s broad-spectrum antibiotic</span>
-                <p class="protocol-ingredients__item-desc">Allicin in garlic is lethal to over 60 types of fungi and 20 types of bacteria. It also paralyzes parasites, making them easier to flush.</p>
-              </div>
-            </li>
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-oregano-leaf-oil.jpg" | asset_url }}" alt="Oregano Leaf Oil" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Oregano Leaf Oil</span>
-                <span class="protocol-ingredients__item-subtitle">Breaks down biofilms</span>
-                <p class="protocol-ingredients__item-desc">Parasites hide behind biofilm — a slimy shield that protects them from your immune system. Oregano oil’s carvacrol dissolves that shield.</p>
-              </div>
-            </li>
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-pumpkin-seed.jpg" | asset_url }}" alt="Pumpkin Seed" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Pumpkin Seed</span>
-                <span class="protocol-ingredients__item-subtitle">The gentle paralyzer</span>
-                <p class="protocol-ingredients__item-desc">Contains cucurbitin, an amino acid that paralyzes tapeworms and roundworms without harsh side effects. Used in traditional medicine for centuries.</p>
-              </div>
-            </li>
-            <li class="protocol-ingredients__item">
-              <div class="protocol-ingredients__item-image">
-                <img src="{{ "herb-pau-darco-bark.jpg" | asset_url }}" alt="Pau d’Arco Bark" loading="lazy">
-              </div>
-              <div class="protocol-ingredients__item-content">
-                <span class="protocol-ingredients__item-name">Pau d’Arco Bark</span>
-                <span class="protocol-ingredients__item-subtitle">Cleans what’s left behind</span>
-                <p class="protocol-ingredients__item-desc">After the parasites die, their toxins remain. Pau d’Arco supports your liver and lymphatic system in clearing the debris so you don’t feel worse before you feel better.</p>
-              </div>
-            </li>
+    <!-- What You'll Feel Section -->
+    <section class="card mt-6">
+      <div class="text-center">
+        <span class="section-badge badge-green">What you'll feel</span>
+      </div>
+      <h2 class="section-heading">In 21 days, your body becomes unrecognizable to you.</h2>
+
+      <ul class="timeline-list">
+        <li class="timeline-item">
+          <div class="timeline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-days">Days 1-3</div>
+            <div class="timeline-title">They feel it first</div>
+            <p class="timeline-desc">The drops hit your gut. The biofilm those parasites have been hiding behind for years starts breaking down. You won't notice anything. They will.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-days">Days 4-7</div>
+            <div class="timeline-title">Cravings get quieter</div>
+            <p class="timeline-desc">Sugar stops calling at 3pm. Your jeans button without a fight. You wake up before your alarm. Around day six you'll start wondering if it's actually working.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-days">Days 8-14</div>
+            <div class="timeline-title">You forget what bloat felt like</div>
+            <p class="timeline-desc">The stomach you've been hiding under sweaters is gone. Your skin clears. Your mood stops dropping out from under you at 4pm. You laugh at something small and notice yourself laughing.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-days">Days 15-21</div>
+            <div class="timeline-title">Other people see it before you do</div>
+            <p class="timeline-desc">Flatter stomach. Sharper head. Deeper sleep. Your sister asks if you got something done. Your husband looks at you like he used to. You tell him it was three drops in a glass of water.</p>
+          </div>
+        </li>
       </ul>
     </section>
 
-    <!-- Who This Is For Section -->
-    <section class="protocol-who">
-      <div class="protocol-section-badge protocol-section-badge--amber">
-        <span>Who this is for</span>
+    <!-- What's Inside Section -->
+    <section class="card card-gold mt-6">
+      <div class="text-center">
+        <span class="section-badge badge-gold">What's inside</span>
       </div>
+      <h2 class="section-heading">Seven herbs. One bottle. Nothing you can't pronounce.</h2>
+      <p class="section-sub">This is the full formula. No proprietary blend hiding behind a label. No filler stretching the bottle out. Seven wild-harvested herbs, each one doing exactly one job.</p>
 
-      <div class="protocol-who__image-wrapper">
-        <img src="{{ "plush-over40.jpg" | asset_url }}" alt="" class="protocol-who__image" loading="lazy">
+      <ul class="herbs-list">
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-wormwood-BaP_UAH2.jpg" alt="Wild Mediterranean Wormwood" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">Wild Mediterranean Wormwood</div>
+            <div class="herb-subtitle">The one that does the killing</div>
+            <p class="herb-desc">The 2,000-year-old gut cleanser. The compound inside it is what a Chinese scientist won the Nobel Prize for in 2015. We use the wild Mediterranean variety, hand-harvested from the coast. It has up to 10x more of the active compound than the cheap farmed kind every Amazon brand uses.</p>
+          </div>
+        </li>
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-black-walnut-pvENTk93.jpg" alt="Appalachian Black Walnut Hull" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">Appalachian Black Walnut Hull</div>
+            <div class="herb-subtitle">The one that opens the door</div>
+            <p class="herb-desc">Opens the gut lining so the dead parasites can actually leave your body. Skip this step and you feel worse before you feel better. It's why most cleanses leave you bloated for a week.</p>
+          </div>
+        </li>
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-soursop-J7JgLPBX.jpg" alt="Brazilian Soursop Leaf" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">Brazilian Soursop Leaf</div>
+            <div class="herb-subtitle">The backup</div>
+            <p class="herb-desc">Traditional healers in the Amazon have used it for 400 years for this exact purpose. Picks up the parasites the wormwood missed.</p>
+          </div>
+        </li>
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-pumpkin-seed-BN_Dj8L1.jpg" alt="Hungarian Pumpkin Seed" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">Hungarian Pumpkin Seed</div>
+            <div class="herb-subtitle">The one that makes them let go</div>
+            <p class="herb-desc">Paralyzes the worms so they release from the intestinal wall. The wormwood kills them. The pumpkin seed makes sure they leave instead of staying stuck.</p>
+          </div>
+        </li>
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-pau-darco-DeJwJ9EM.jpg" alt="South American Pau d'Arco" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">South American Pau d'Arco</div>
+            <div class="herb-subtitle">The one that cleans the swamp</div>
+            <p class="herb-desc">Clears the yeast and bacterial overgrowth that lives next to the parasites. Why you still feel sluggish after most cleanses end? Because they killed the worms but left the swamp behind.</p>
+          </div>
+        </li>
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-garlic-DCAYHSKd.jpg" alt="Aged Japanese Garlic" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">Aged Japanese Garlic</div>
+            <div class="herb-subtitle">The one keeping you upright</div>
+            <p class="herb-desc">Backs up your immune system while the cleanse runs so you don't crash on day three. Aged in oak barrels for 20 months. Raw garlic does nothing here. Aged is a different compound entirely.</p>
+          </div>
+        </li>
+        <li class="herb-item">
+          <img class="herb-img" src="https://parasitequiz.app/assets/herb-oregano-CIe9cZQl.jpg" alt="Wild Greek Oregano Oil" loading="lazy">
+          <div class="herb-content">
+            <div class="herb-name">Wild Greek Oregano Oil</div>
+            <div class="herb-subtitle">The one that finishes it</div>
+            <p class="herb-desc">Goes after the last of the bacterial overgrowth on its way out. Closes the loop the other six opened.</p>
+          </div>
+        </li>
+      </ul>
+
+      <p class="herbs-footer">No fillers. No synthetics. No "proprietary blends" hiding doses.</p>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="card mt-6">
+      <div class="text-center">
+        <span class="reviews-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+          4.9 · 12,847 reviews
+        </span>
       </div>
+      <h2 class="section-heading">Real women. Real resets.</h2>
 
-      <h2 class="protocol-who__heading">This protocol is built for people who&hellip;</h2>
-      <p class="protocol-who__description">Have tried everything and still feel bloated, sluggish, or &ldquo;off.&rdquo; This isn&rsquo;t another supplement. It&rsquo;s a targeted cleanse designed around your specific symptom profile.</p>
-
-      <ul class="protocol-who__checklist">
-            <li class="protocol-who__checklist-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
-              <span>You’ve tried probiotics, fiber, and cleanses with no lasting relief</span>
-            </li>
-            <li class="protocol-who__checklist-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
-              <span>You wake up bloated even when you ate clean the day before</span>
-            </li>
-            <li class="protocol-who__checklist-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
-              <span>You’re tired of being told “it’s just stress” or “it’s your age”</span>
-            </li>
-            <li class="protocol-who__checklist-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
-              <span>You want a natural, science-backed approach — not another prescription</span>
-            </li>
-            <li class="protocol-who__checklist-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-who__check-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
-              <span>You’re ready to feel like yourself again within 21 days</span>
-            </li>
+      <ul class="testimonial-list">
+        <li class="testimonial-item">
+          <img class="testimonial-avatar" src="https://parasitequiz.app/assets/plush-under40-Bg6kEaMx.jpg" alt="Sarah, 34" loading="lazy">
+          <div class="testimonial-content">
+            <div class="testimonial-header">
+              <span class="testimonial-name">Sarah, 34</span>
+              <span class="testimonial-stars">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+              </span>
+            </div>
+            <p class="testimonial-text">"Down 11 lbs and the bloat is just... gone. I forgot what a flat stomach felt like."</p>
+            <div class="testimonial-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Results in 21 days
+            </div>
+          </div>
+        </li>
+        <li class="testimonial-item">
+          <img class="testimonial-avatar" src="https://parasitequiz.app/assets/plush-over40-Dle-o2eN.jpg" alt="Linda, 52" loading="lazy">
+          <div class="testimonial-content">
+            <div class="testimonial-header">
+              <span class="testimonial-name">Linda, 52</span>
+              <span class="testimonial-stars">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+              </span>
+            </div>
+            <p class="testimonial-text">"My doctor told me it was 'just menopause.' Three weeks on Lumvelle and I have my body back."</p>
+            <div class="testimonial-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Results in 3 weeks
+            </div>
+          </div>
+        </li>
+        <li class="testimonial-item">
+          <img class="testimonial-avatar" src="https://parasitequiz.app/assets/plush-under40-Bg6kEaMx.jpg" alt="Maria, 41" loading="lazy">
+          <div class="testimonial-content">
+            <div class="testimonial-header">
+              <span class="testimonial-name">Maria, 41</span>
+              <span class="testimonial-stars">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+              </span>
+            </div>
+            <p class="testimonial-text">"The sugar cravings were the first thing to go. I haven't touched a soda in a month."</p>
+            <div class="testimonial-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Results in 30 days
+            </div>
+          </div>
+        </li>
       </ul>
     </section>
 
     <!-- FAQ Section -->
-    <section class="protocol-faq">
-      <div class="protocol-section-badge">
-        <span>Common questions</span>
+    <section class="card card-purple mt-6">
+      <div class="text-center">
+        <span class="section-badge badge-purple">Common questions</span>
       </div>
+      <h2 class="section-heading">You asked. We answered.</h2>
 
-      <div class="protocol-faq__list">
-          <details class="protocol-faq__item">
-              <summary class="protocol-faq__question">
-                <span>How fast will I feel a difference?</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
-              </summary>
-              <div class="protocol-faq__answer">
-                <p>Most people notice reduced bloating within the first 3–5 days. Energy improvements typically come in week two. By day 21, the full protocol has run its course.</p>
-              </div>
-            </details>
-          <details class="protocol-faq__item">
-              <summary class="protocol-faq__question">
-                <span>How do I take it?</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
-              </summary>
-              <div class="protocol-faq__answer">
-                <p>Place one full dropper under your tongue, hold for 30 seconds, then swallow. Take once in the morning and once before bed. Each bottle lasts 30 days.</p>
-              </div>
-            </details>
-          <details class="protocol-faq__item">
-              <summary class="protocol-faq__question">
-                <span>Can I pause or cancel?</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
-              </summary>
-              <div class="protocol-faq__answer">
-                <p>Yes. There’s no commitment. You can pause, skip, or cancel your subscription at any time from your account dashboard or by contacting support.</p>
-              </div>
-            </details>
-          <details class="protocol-faq__item">
-              <summary class="protocol-faq__question">
-                <span>Is there a guarantee?</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
-              </summary>
-              <div class="protocol-faq__answer">
-                <p>Absolutely. Every order is backed by our 90-day risk-free guarantee. If you don’t feel a noticeable difference, we’ll refund you in full — no questions asked.</p>
-              </div>
-            </details>
-          <details class="protocol-faq__item">
-              <summary class="protocol-faq__question">
-                <span>Will my doctor approve?</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="protocol-faq__chevron"><path d="m6 9 6 6 6-6"></path></svg>
-              </summary>
-              <div class="protocol-faq__answer">
-                <p>Our formula uses only natural, well-studied herbs with centuries of traditional use. That said, we always recommend sharing any new supplement with your healthcare provider.</p>
-              </div>
-            </details>
+      <div class="faq-list" id="faq-list-{{ section.id }}">
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>How fast will I feel a difference?</span>
+            <span class="faq-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">Most women notice less bloating in 4-7 days. Energy and cravings shift around week two. The full transformation lands by day 21.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>How do I take it?</span>
+            <span class="faq-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">Two droppers, twice a day. Once in the morning, once before bed. Hold under the tongue for 30 seconds, then swallow.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Can I pause or cancel?</span>
+            <span class="faq-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">Anytime, from your account. No fees, no calls, no hoops. You're in control.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Is there a guarantee?</span>
+            <span class="faq-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">Yes. A full 90-day money-back guarantee. If you don't feel the difference, you don't pay.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Will my doctor approve?</span>
+            <span class="faq-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">Lumvelle is a food-grade herbal supplement, but if you're on prescription medication, run it by your doctor first.</div>
+        </div>
       </div>
     </section>
 
-    <!-- Second CTA Section (repeat pricing) -->
-    <section class="protocol-hero protocol-hero--repeat">
-      <div class="protocol-pricing">
-        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
-          <div class="protocol-pricing__option-inner">
-            <img src="{{ "lumvelle-1-bottle.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">Buy One</div>
-              <div class="protocol-pricing__subtitle">You save 71%</div>
-            </div>
-            <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">$19.95</div>
-              <div class="protocol-pricing__compare">$69.99</div>
-            </div>
-          </div>
-        </a>
-        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--featured">
-          <div class="protocol-pricing__option-inner">
-            <img src="{{ "lumvelle-3-bottles-free.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">Buy 2 Get 1 FREE</div>
-              <div class="protocol-pricing__subtitle">You save 81%</div>
-            </div>
-            <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">$39.95</div>
-              <div class="protocol-pricing__compare">$209.97</div>
-            </div>
-          </div>
-        </a>
-        <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-pricing__option protocol-pricing__option--default">
-          <div class="protocol-pricing__option-inner">
-            <img src="{{ "lumvelle-5-bottles.png" | asset_url }}" alt="" class="protocol-pricing__thumb">
-            <div class="protocol-pricing__info">
-              <div class="protocol-pricing__title">Buy 3 Get 2 FREE</div>
-              <div class="protocol-pricing__subtitle">You save 83%</div>
-            </div>
-            <div class="protocol-pricing__prices">
-              <div class="protocol-pricing__price">$59.95</div>
-              <div class="protocol-pricing__compare">$349.95</div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <a href="/products/lumvelle-wild-harvested-wormwood-herbal-drops" class="protocol-cta">
-        <span>Check Availability</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
-      </a>
+    <!-- Urgency Countdown Section -->
+    <section class="card card-urgency mt-6 urgency-section">
+      <svg class="urgency-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+      <h2 class="urgency-heading">Your protocol is reserved for <span id="countdown-{{ section.id }}">15</span> minutes</h2>
+      <p class="urgency-sub">Lock in your discount today. 90-day money-back guarantee, no risk.</p>
+      <button type="button" class="cta-button" onclick="document.getElementById('protocol-form-{{ section.id }}').submit();">
+        Check Availability
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </section>
 
-    <!-- Trust Badges -->
-    <section class="protocol-trust">
-      <div class="protocol-trust__badges">
-        <div class="protocol-trust__badge">
-          <div class="protocol-trust__badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+    <!-- Trust Footer -->
+    <section class="card card-purple mt-6">
+      <div class="trust-footer">
+        <div class="trust-footer-item">
+          <div class="trust-footer-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
           </div>
-          <span>Free Shipping</span>
+          <span class="trust-footer-label">Free Shipping</span>
         </div>
-        <div class="protocol-trust__badge">
-          <div class="protocol-trust__badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>
+        <div class="trust-footer-item">
+          <div class="trust-footer-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/></svg>
           </div>
-          <span>Excellent Support</span>
+          <span class="trust-footer-label">Excellent Support</span>
         </div>
-        <div class="protocol-trust__badge">
-          <div class="protocol-trust__badge-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <div class="trust-footer-item">
+          <div class="trust-footer-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
-          <span>90-Day Risk-Free Guarantee</span>
+          <span class="trust-footer-label">90-Day Risk-Free Guarantee</span>
         </div>
       </div>
 
-      <div class="protocol-trust__payments">
-        <img src="{{ "paypal.svg" | asset_url }}" alt="PayPal" loading="lazy">
-        <img src="{{ "visa.svg" | asset_url }}" alt="Visa" loading="lazy">
-        <img src="{{ "mastercard.svg" | asset_url }}" alt="Mastercard" loading="lazy">
-        <img src="{{ "amex.svg" | asset_url }}" alt="American Express" loading="lazy">
-        <img src="{{ "stripe.svg" | asset_url }}" alt="Stripe" loading="lazy">
+      <!-- Payment Icons -->
+      <div class="payment-icons">
+        <img src="https://parasitequiz.app/payment-logos/paypal.svg" alt="PayPal" loading="lazy">
+        <img src="https://parasitequiz.app/payment-logos/visa.svg" alt="Visa" loading="lazy">
+        <img src="https://parasitequiz.app/payment-logos/mastercard.svg" alt="Mastercard" class="tall" loading="lazy">
+        <img src="https://parasitequiz.app/payment-logos/amex.svg" alt="American Express" class="tall" loading="lazy">
+        <img src="https://parasitequiz.app/payment-logos/stripe.svg" alt="Stripe" loading="lazy">
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="protocol-footer">
-      <div class="protocol-footer__brand">Lumvelle</div>
-      <p class="protocol-footer__copyright">Lumvelle 2026 &copy; All rights reserved</p>
-      <p class="protocol-footer__disclaimer"><strong>Disclaimer!</strong> The statements on this site have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease and do not replace medical advice. Individual results may differ from person to person. Exercise and a healthy diet are necessary to achieve and maintain weight loss.</p>
-      <a href="/" class="protocol-footer__retake">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+    <footer class="page-footer">
+      <div class="footer-brand font-serif">Lumvelle</div>
+      <p class="footer-copy">Lumvelle 2026 &copy; All rights reserved</p>
+      <p class="footer-disclaimer"><strong>Disclaimer!</strong> The statements on this site have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease and do not replace medical advice. Individual results may differ from person to person. Exercise and a healthy diet are necessary to achieve and maintain weight loss.</p>
+      <a href="/" class="retake-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
         Retake quiz
       </a>
-      <p class="protocol-footer__privacy">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+      <p class="confidential">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
         Your responses are confidential and used only to personalize your results.
       </p>
     </footer>
-  </div>
-</main>
 
+  </div>
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+
+  // FAQ Accordion
+  var faqItems = document.querySelectorAll('#faq-list-' + sectionId + ' .faq-item');
+  faqItems.forEach(function(item) {
+    var btn = item.querySelector('.faq-question');
+    btn.addEventListener('click', function() {
+      var isOpen = item.classList.contains('open');
+      faqItems.forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) { item.classList.add('open'); }
+    });
+  });
+
+  // Bundle Option Selection
+  var bundleOptions = document.querySelectorAll('#bundle-options-' + sectionId + ' .bundle-option');
+  var variantInput = document.getElementById('variant-id-' + sectionId);
+  bundleOptions.forEach(function(option) {
+    option.addEventListener('click', function() {
+      bundleOptions.forEach(function(o) { o.classList.remove('selected'); });
+      option.classList.add('selected');
+      if (variantInput && option.dataset.variant) {
+        variantInput.value = option.dataset.variant;
+      }
+    });
+  });
+
+  // Countdown Timer (15 minutes)
+  var countdownEl = document.getElementById('countdown-' + sectionId);
+  if (countdownEl) {
+    var totalSeconds = 15 * 60;
+    var timer = setInterval(function() {
+      totalSeconds--;
+      if (totalSeconds <= 0) {
+        clearInterval(timer);
+        countdownEl.textContent = '0:00';
+        return;
+      }
+      var mins = Math.floor(totalSeconds / 60);
+      var secs = totalSeconds % 60;
+      countdownEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }, 1000);
+  }
+})();
+</script>
 
 {% schema %}
 {
-  "name": "Protocol \u2013 \u201cItcher\u201d",
+  "name": "Protocol Itcher",
   "settings": [
     {
       "type": "text",
@@ -500,15 +669,7 @@
       "default": "cc1e3df8-e8bc-472b-b782-4892197577d7"
     }
   ],
-  "blocks": [
-    {
-      "type": "@app"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Protocol \u2013 \u201cItcher\u201d"
-    }
-  ]
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Protocol Itcher" }]
 }
 {% endschema %}
