@@ -47,6 +47,11 @@
   .protocol-section .cta-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 56px; border-radius: 12px; background: #2d4a2b; color: #fff; font-size: 16px; font-weight: 600; border: none; cursor: pointer; margin-top: 24px; transition: background 0.2s; }
   .protocol-section .cta-button:hover { background: #1f3a1d; }
   .protocol-section .cta-button svg { width: 18px; height: 18px; }
+.protocol-section .sticky-cta-wrap { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; display: none; justify-content: center; padding: 12px 16px 16px; background: linear-gradient(to top, rgba(255,255,255,0.97) 80%, rgba(255,255,255,0)); pointer-events: none; }
+  .protocol-section .sticky-cta-wrap.visible { display: flex; }
+  .protocol-section .sticky-cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 400px; height: 54px; border-radius: 12px; background: #2d4a2b; color: #fff; font-size: 16px; font-weight: 600; border: none; cursor: pointer; pointer-events: all; box-shadow: 0 4px 16px rgba(0,0,0,0.18); transition: background 0.2s; text-decoration: none; }
+  .protocol-section .sticky-cta-btn:hover { background: #1f3a1d; }
+  .protocol-section .sticky-cta-btn svg { width: 18px; height: 18px; }
   .protocol-section .sub-info { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 10px; color: #999; white-space: nowrap; }
   @media (min-width: 640px) { .protocol-section .sub-info { gap: 16px; font-size: 11px; } }
   .protocol-section .sub-info svg { width: 12px; height: 12px; flex-shrink: 0; }
@@ -627,6 +632,15 @@
       </p>
     </footer>
 
+
+    <!-- Sticky Floating Add To Cart Button -->
+    <div class="sticky-cta-wrap" id="sticky-cta-{{ section.id }}">
+      <button type="button" class="sticky-cta-btn" id="sticky-cta-btn-{{ section.id }}">
+        Add To Cart
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </button>
+    </div>
+
   </div>
 </div>
 
@@ -664,6 +678,30 @@
             countdownEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
           }, 1000);
         }
+      })();
+    </script>
+    <script>
+      (function() {
+        var stickyWrap = document.getElementById('sticky-cta-{{ section.id }}');
+        var stickyBtn = document.getElementById('sticky-cta-btn-{{ section.id }}');
+        var mainBtn = document.querySelector('#product-form-{{ section.id }} .cta-button');
+        if (!stickyWrap || !stickyBtn || !mainBtn) return;
+
+        function checkScroll() {
+          var rect = mainBtn.getBoundingClientRect();
+          if (rect.bottom < 0) {
+            stickyWrap.classList.add('visible');
+          } else {
+            stickyWrap.classList.remove('visible');
+          }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        checkScroll();
+
+        stickyBtn.addEventListener('click', function() {
+          mainBtn.closest('form').requestSubmit();
+        });
       })();
     </script>
 {% schema %}
